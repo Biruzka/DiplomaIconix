@@ -8,5 +8,8 @@ import module from './module';
 import routes from './routes';
 routes(module);
 
+import header from './header';
+header(module);
+
 /* each module in index should return a module name */
 export default module.name;

@@ -9,7 +9,7 @@ module.exports = (__dirname, fileName) => {
     entry: './app/index.js',
 
     output: {
-      path: __dirname + '/public/js',
+      path: __dirname + '/public',
       filename: fileName
     },
 
@@ -29,6 +29,15 @@ module.exports = (__dirname, fileName) => {
         test: /\.js$/,
         exclude: __dirname + '/node_modules',
         loaders: ['ng-annotate', 'babel-loader']
+      }, {
+        test: /\.less$/,
+        loaders: ['style', 'css', 'autoprefixer?browsers=last 2 versions', 'less']
+      }, {
+        test: /\.css$/,
+        loaders: ['style', 'css', 'autoprefixer?browsers=last 2 versions']
+      }, {
+        test: /\.(png|jpg|svg)$/,
+        loaders: ['file?name=resources/[name].[ext]']
       }]
     }
   }
