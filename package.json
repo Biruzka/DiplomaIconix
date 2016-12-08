@@ -1,7 +1,7 @@
 {
-  "name": "base-project-template",
+  "name": "iconix-manager",
   "version": "1.0.0",
-  "description": "an anuglar project base template",
+  "description": "iconix manager",
   "main": "index.js",
   "scripts": {
     "start": "babel-node index.js",
@@ -20,11 +20,17 @@
     "gulp-less": "^3.2.0",
     "less-loader": "^2.2.3",
     "ng-annotate-loader": "^0.2.0",
+    "raw": "^0.1.4",
+    "raw-loader": "^0.5.1",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.3"
   },
   "dependencies": {
     "angular": "^1.5.8",
     "express": "^4.14.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": " "
   }
 }

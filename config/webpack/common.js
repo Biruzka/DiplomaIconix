@@ -38,6 +38,9 @@ module.exports = (__dirname, fileName) => {
       }, {
         test: /\.(png|jpg|svg)$/,
         loaders: ['file?name=resources/[name].[ext]']
+      }, {
+        test: /\.html$/,
+        loaders: ['raw']
       }]
     }
   }
