@@ -1,4 +1,4 @@
 
 export default {
-  template: 'hello'
+  template: `<ui-view></ui-view>`
 }
