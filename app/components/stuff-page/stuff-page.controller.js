@@ -42,7 +42,7 @@ export default class StuffPageCtrl extends AngularObject {
   _buildInviteConfirmDialog(email) {
     return this.$mdDialog.confirm()
           .title('Приглашение сотрудника')
-          .textContent(`Вы хотите пригласить нового сотрудника по почте ${email}?`)
+          .textContent(`Вы хотите пригласить нового сотрудника по почте: ${email}?`)
           .ariaLabel('invitePersonDialog')
           .ok('ПРИГЛАСИТЬ')
           .cancel('ОТМЕНА');
