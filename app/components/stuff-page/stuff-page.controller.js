@@ -22,7 +22,12 @@ export default class StuffPageCtrl extends AngularObject {
   }
 
   invitePerson(email) {
+    const inviteDialog = this._buildInviteConfirmDialog(email);
 
+    this.$mdDialog
+      .show(inviteDialog)
+      .then(() => {console.log('success')})
+      .catch(() => {console.log('error')});
   }
 
   removePerson(index, person) {

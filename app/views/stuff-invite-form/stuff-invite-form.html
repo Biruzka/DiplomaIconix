@@ -1,0 +1,11 @@
+<form class="stuff-invite-form" name="$ctrl.inviteForm">
+  <md-input-container class="stuff-invite-form__email-input">
+    <label>Email</label>
+    <input ng-model="$ctrl.email" type="email" name="email">
+  </md-input-container>
+  <md-button class="md-icon-button stuff-invite-form__invite-button" 
+             data-ng-disabled="$ctrl.inviteForm.$invalid"
+             data-ng-click="$ctrl.invitePerson({email: $ctrl.email})">
+    <i class="material-icons accent-text">send</i>
+  </md-button>
+</form>
