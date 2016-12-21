@@ -11,12 +11,12 @@ const module = angular
 
 module
   .component('iconixDocManagerPage', DocManagerPageComponent)
-  .config(($stateProvider, $urlRouterProvider) => {
+  .config(($stateProvider) => {
     'ngInject';
 
     $stateProvider
       .state('userApp.docManagerPage', {
-        url: '/',
+        url: '/doc-manager',
         component: 'iconixDocManagerPage' 
       });
   });

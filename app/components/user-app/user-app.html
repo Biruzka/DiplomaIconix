@@ -1,2 +1,6 @@
-<iconix-header></iconix-header>
-<ui-view></ui-view>
+<iconix-header on-menu-button-click="$ctrl.openSideMenu()"></iconix-header>
+<iconix-side-menu side-menu-id="{{$ctrl.SIDE_MENU_ID}}"></iconix-side-menu>
+<main class="iconix-content">
+  <ui-view></ui-view>
+</main>
+

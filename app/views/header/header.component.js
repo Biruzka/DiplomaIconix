@@ -1,3 +1,10 @@
+
+import template from './header.html';
+import './header.less';
+
 export default {
-  template: 'header'
+  bindings: {
+    openSideMenu: '&onMenuButtonClick'
+  },
+  template
 }

@@ -11,5 +11,9 @@ server.set('port', port);
 
 server.use(express.static(`${__dirname}/public`));
 
+server.all('**', function (req, res) {
+  res.sendFile(`${__dirname}/public/index.html`);
+});
+
 server.listen(server.get('port'), () =>
   console.log(`server listening on port ${server.get('port')}`));
