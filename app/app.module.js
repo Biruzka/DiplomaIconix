@@ -10,6 +10,9 @@ import ngMaterial from 'angular-material';
 /* third-party styles */
 import 'angular-material/angular-material.css';
 
+/* core styles */
+import './app.less';
+
 /* app modules */
 import ConfigModule from './config';
 import ComponentsModule from './components';
