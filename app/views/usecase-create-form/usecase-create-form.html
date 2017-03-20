@@ -1,0 +1,80 @@
+<md-content layout-padding >
+    <form name="usecaseForm" class="usecaseForm" class="md-whiteframe-2dp">
+        <div layout-gt-sm="raw" layout-align="space-around" class="md-whiteframe-1dp usecaseForm__area usecaseForm__area_top" layout-padding>
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>Кодовый номер</label>
+                <input md-maxlength="30" required name="name" ng-model="usecase.code" />
+                <!--<div ng-messages="userForm.name.$error" ng-if="!showHints">-->
+                <!--<div ng-message="required">Код должен быть уникальным</div>-->
+                <!--</div>-->
+            </md-input-container>
+            <div flex="5" hide-xs hide-sm>
+                <!-- Spacer //-->
+            </div>
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>Название</label>
+                <input md-maxlength="50" required name="name" ng-model="usecase.name" />
+            </md-input-container>
+        </div>
+
+        <div layout="raw" layout-xs="column" layout-sm="column" layout-align="space-around" class="usecaseForm__area">
+            <div layout-gt-sm="column" class="md-whiteframe-1dp usecaseForm__secondary-area" layout-padding>
+                <md-input-container class="md-block" flex-gt-sm md-no-float>
+                    <label>Актор</label>
+                    <input md-maxlength="30"  name="name" ng-model="usecase.actor" />
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>Предусловие</label>
+                    <input md-maxlength="30" name="name" ng-model="usecase.precondition" />
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>Сценарий</label>
+                    <textarea ng-model="usecase.scenario" md-maxlength="700" rows="3" md-select-on-focus></textarea>
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>Результат</label>
+                    <input md-maxlength="30" name="name" ng-model="usecase.result" />
+                </md-input-container>
+            </div>
+
+            <div layout-gt-sm="column" class="md-whiteframe-1dp usecaseForm__secondary-area" layout-padding>
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>Срок сдачи</label>
+                    <md-datepicker ng-model="usecase.deadline"></md-datepicker>
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>Важность</label>
+                    <md-select name="type" ng-model="usecase.importance" >
+                        <md-option value="A">А</md-option>
+                        <md-option value="B">В</md-option>
+                        <md-option value="C">С</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>Статус</label>
+                    <md-select name="type" ng-model="usecase.status" >
+                        <md-option value="approval">Утверждение</md-option>
+                        <md-option value="waiting">Ожидание</md-option>
+                        <md-option value="development">Разработка</md-option>
+                        <md-option value="release">Релиз</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>Тестирование</label>
+                    <md-select name="type" ng-model="usecase.testing" >
+                        <md-option value="success">Успешно</md-option>
+                        <md-option value="fail">Неуспешно</md-option>
+                        <md-option value="nil">Отсутствует</md-option>
+                    </md-select>
+                </md-input-container>
+
+            </div>
+        </div>
+        <section layout="row" layout-sm="column" layout-align="end centre" layout-wrap>
+            <md-button>Сохранить</md-button>
+            <md-button>Отмена</md-button>
+        </section>
+    </form>
+
+
+</md-content>

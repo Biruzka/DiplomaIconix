@@ -1,0 +1,45 @@
+<md-content layout="row" layout-xs="column" class="usecases">
+<div ng-repeat="usecase in $ctrl.usecases">
+        <md-card class="usecase">
+
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline usecase__name"> {{::usecase.code}} {{::usecase.name}}</span>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+                <p>
+                    <span class="usecase__item-title">Актор: </span> {{::usecase.actor}}
+                </p>
+                <p>
+                    <span class="usecase__item-title">Предусловие:</span> {{::usecase.precondition}}
+                </p>
+                <p>
+                    <span class="usecase__item-title">Сценарий:</span> {{::usecase.scenario}}
+                </p>
+                <p>
+                    <span class="usecase__item-title">Результат:</span> {{::usecase.result}}
+                </p>
+            </md-card-content>
+            <md-card-actions layout="row" layout-align="end center">
+                <md-button>
+                    Удалить
+                </md-button>
+                <md-button>
+                    Изменить
+                </md-button>
+            </md-card-actions>
+        </md-card>
+</div>
+</md-content>
+<a ui-sref="userApp.usecaseCreatePage" href="">
+<!-- Плавающая конопка добавления -->
+<div class="float-btn create-button">
+    <md-button class="md-fab"  aria-label="Добавить">
+        <md-tooltip >
+            Добавить
+        </md-tooltip>
+        <md-icon style="width: 24px; height: 24px;"><i class="material-icons">&#xE145;</i></md-icon>
+    </md-button>
+</div>
+</a>
