@@ -8,6 +8,7 @@ import InvitedStuffListModule from './invited-stuff-list';
 import StuffInviteFormModule from './stuff-invite-form';
 import UsecasesModule from './usecases-pack';
 import UsecaseCreateForm from './usecase-create-form';
+import StatusTable from './status-table';
 
 const module = angular
   .module('app.views', [
@@ -16,7 +17,8 @@ const module = angular
     InvitedStuffListModule,
     StuffInviteFormModule,
     UsecasesModule,
-    UsecaseCreateForm
+    UsecaseCreateForm,
+    StatusTable
   ]);
 
 export default module.name;

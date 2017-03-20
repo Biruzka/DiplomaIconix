@@ -1,0 +1,33 @@
+<div layout="column">
+<md-content layout="column" flex>
+    <div layout="raw" layout-align="end center">
+        <md-table-pagination md-limit="$ctrl.query.limit" md-limit-options="$ctrl.limitOptions" md-page="$ctrl.query.page" md-total="{{$ctrl.usecases.count}}" md-page-select="$ctrl.options.pageSelect" md-boundary-links="$ctrl.options.boundaryLinks" md-on-paginate="$ctrl.logPagination"></md-table-pagination>
+    </div>
+    <md-card>
+        <md-table-container>
+            <table md-table md-row-select="$ctrl.options.rowSelection" multiple="{{$ctrl.options.multiSelect}}" ng-model="$ctrl.selected" md-progress="promise">
+                <thead ng-if="!$ctrl.options.decapitate" md-head md-order="$ctrl.query.order" md-on-reorder="$ctrl.logOrder">
+                <tr md-row>
+                    <th md-column md-order-by="code"><span>Код</span></th>
+                    <th md-column md-order-by="name"><span>Требование</span></th>
+                    <th md-column md-order-by="status"><span>Важность</span></th>
+                    <th md-column md-order-by="testing"><span>Статус</span></th>
+                    <th md-column md-order-by="importance"><span>Тестирование</span></th>
+                    <th md-column md-order-by="deadline"><span>Срок сдачи</span></th>
+                </tr>
+                </thead>
+                <tbody md-body>
+                <tr md-row md-select="$ctrl.usecase" md-on-select="$ctrl.logItem" md-auto-select="$ctrl.options.autoSelect" ng-repeat="usecase in $ctrl.usecases.data | filter: filter.search | orderBy: $ctrl.query.order | limitTo: $ctrl.query.limit : ($ctrl.query.page -1) * $ctrl.query.limit">
+                    <td md-cell class="td-min">{{usecase.code}}</td>
+                    <td md-cell>{{usecase.name}}</td>
+                    <td md-cell>{{usecase.status}}</td>
+                    <td md-cell>{{usecase.testing}}</td>
+                    <td md-cell>{{usecase.importance}}</td>
+                    <td md-cell>{{usecase.deadline}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </md-table-container>
+    </md-card>
+</md-content>
+</div>

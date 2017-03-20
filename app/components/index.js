@@ -8,7 +8,8 @@ import ProjectsPageModule from './projects-page';
 import LoginPageModule from './login-page';
 import PrototypesPageModule from './prototypes-page';
 import UsecasesPageModule from './usecases-page';
-import UsecaseCreateModule from './usecase-create-page';
+import UsecaseCreatePageModule from './usecase-create-page';
+import StatusPageModule from './status-page';
 
 const module = angular
   .module('app.components', [
@@ -18,7 +19,8 @@ const module = angular
     LoginPageModule,
     PrototypesPageModule,
     UsecasesPageModule,
-    UsecaseCreateModule
+    UsecaseCreatePageModule,
+    StatusPageModule
   ]);
 
 export default module.name;
