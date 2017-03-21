@@ -35,10 +35,12 @@ module.exports = (__dirname, fileName) => {
       }, {
         test: /\.css$/,
         loaders: ['style', 'css', 'autoprefixer?browsers=last 2 versions']
-      }, {
+      },
+        {
         test: /\.(png|jpg|svg)$/,
         loaders: ['file?name=resources/[name].[ext]']
-      }, {
+      },
+        {
         test: /\.html$/,
         loaders: ['raw']
       }]

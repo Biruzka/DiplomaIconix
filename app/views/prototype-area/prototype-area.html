@@ -1,0 +1,46 @@
+<div layout-gt-sm="raw" layout-align="space-between" class="prototype-menu">
+    <md-input-container class="md-block" flex-gt-sm>
+        <label>Прототип</label>
+        <md-select name="type" ng-model="usecase.testing" >
+            <md-option value="success">001 Открытие счета</md-option>
+            <md-option value="fail">002 Создание продукта</md-option>
+        </md-select>
+    </md-input-container>
+    <div flex="30" hide-xs hide-sm>
+        <!-- Spacer //-->
+    </div>
+    <section layout="row" layout-sm="column" layout-align="end center" layout-wrap>
+        <md-button>Удалить</md-button>
+        <md-button>Изменить</md-button>
+    </section>
+</div>
+
+<div class="prototype-base md-whiteframe-3dp" load-img="$ctrl.loadImage(image)" >
+
+    <div class="proto-img">
+        heyy!!!!!!!!
+    </div>
+
+    <!--render all notes like this one-->
+    <div style="width: 100px; height: 100px; border: 4px double  #a3ffd3; position:absolute; top:10px; left: 10px">
+        <md-tooltip md-direction="bottom">
+            <div class="note">
+            Note in gap
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto atque eaque expedita facere fugit inventore ipsum, iusto molestiae odio officia quae sed, sit tempora totam voluptatum! Culpa doloremque facilis recusandae?
+            </div>
+        </md-tooltip>
+    </div>
+    <!--render all notes like this one-->
+</div>
+
+<!-- Плавающая конопка добавления -->
+<div class="float-btn create-button">
+    <md-button class="md-fab"  aria-label="Добавить">
+        <md-tooltip >
+            Добавить
+        </md-tooltip>
+        <md-icon style="width: 24px; height: 24px;"><i class="material-icons">&#xE145;</i></md-icon>
+    </md-button>
+</div>
+
+

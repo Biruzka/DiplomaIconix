@@ -9,6 +9,8 @@ import StuffInviteFormModule from './stuff-invite-form';
 import UsecasesModule from './usecases-pack';
 import UsecaseCreateForm from './usecase-create-form';
 import StatusTable from './status-table';
+import PrototypeArea from './prototype-area';
+import Comments from './comments';
 
 const module = angular
   .module('app.views', [
@@ -18,7 +20,9 @@ const module = angular
     StuffInviteFormModule,
     UsecasesModule,
     UsecaseCreateForm,
-    StatusTable
+    StatusTable,
+    PrototypeArea,
+    Comments
   ]);
 
 export default module.name;

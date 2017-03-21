@@ -1,0 +1,43 @@
+<!--<div class="comments-area" ng-repeat="usecase in $ctrl.usecases">-->
+<div class="comments-area">
+    <md-card>
+        <span class="comments">
+
+             <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline "> Комментарии: </span>
+                </md-card-title-text>
+            </md-card-title>
+
+            <div class="comment-form">
+               <md-input-container class="md-block" flex-gt-sm>
+                    <label>Тема</label>
+                    <input md-maxlength="30" name="title" ng-model="comment.title" />
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>Текст</label>
+                    <textarea ng-model="comment.text" md-maxlength="500" rows="3" md-select-on-focus></textarea>
+                </md-input-container>
+                <section layout="row" layout-sm="column" layout-align="end centre">
+                    <md-button class="comment-form_button">Отправить</md-button>
+                </section>
+            </div>
+
+            <span class="comment">
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline comment_name"> Непонятная кнопка{{::usecase.code}} {{::usecase.name}}</span>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+                <p>
+                    Опишите подробнее ограничения кнопки перехода слева от меню!
+                </p>
+                <div layout="row" layout-align="end center" class="secondary-text">
+                    Lolipop Iosifich, 19/11/2016
+                </div>
+            </md-card-content>
+            </span>
+        </span>
+    </md-card>
+</div>
