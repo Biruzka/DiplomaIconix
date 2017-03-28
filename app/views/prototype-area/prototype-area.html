@@ -11,18 +11,29 @@
     </div>
     <section layout="row" layout-sm="column" layout-align="end center" layout-wrap>
         <md-button>Удалить</md-button>
-        <md-button>Изменить</md-button>
+        <a class="prototype-menu__a" ui-sref="userApp.prototypeUpdatePage" href=""><md-button>Изменить</md-button></a>
     </section>
 </div>
 
 <div class="prototype-base md-whiteframe-3dp" load-img="$ctrl.loadImage(image)" >
-
     <div class="proto-img">
         <img class="proto-img_picture" src="./resources/3.jpg" alt="">
     </div>
 
+
+here
+    <!--<div ng-repeat="data in items | orderBy:'-timestamp'">-->
+    <div >
+        <div ng-mouseenter="options=true" ng-mouseleave="options=false" class="icon">
+            <i ng-hide="options || checkbox">1</i>
+            <span ng-show="options || checkbox">2</span>
+        </div>
+    </div>
+    <input type='checkbox' ng-model="checkbox" ng-click="options=!options">Show
+here
+
     <!--render all notes like this one-->
-    <div style="width: 100px; height: 100px; border: 4px double  #a3ffd3; position:absolute; top:10px; left: 10px">
+    <div data-tooltip="HTML<br>подсказка" style="width: 100px; height: 100px; border: 4px double  #a3ffd3; position:absolute; top:10px; left: 10px">
         <md-tooltip md-direction="bottom">
             <div class="note">
             Note in gap
@@ -34,6 +45,7 @@
 </div>
 
 <!-- Плавающая конопка добавления -->
+<a ui-sref="userApp.prototypeCreatePage" href="">
 <div class="float-btn create-button">
     <md-button class="md-fab"  aria-label="Добавить">
         <md-tooltip >
@@ -42,5 +54,6 @@
         <md-icon style="width: 24px; height: 24px;"><i class="material-icons">&#xE145;</i></md-icon>
     </md-button>
 </div>
+</a>
 
 

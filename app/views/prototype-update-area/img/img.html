@@ -1,0 +1,93 @@
+<!--https://codepen.io/hughred22/pen/NGaXXg-->
+
+<body layout="column" ng-controller="AppCtrl">
+
+<md-content id="mainContent" flex>
+    <div layout="row" layout-align="center center" layout-margin>
+        <md-card class="md-whiteframe-z2" flex="66" ng-if="admin.successMessage">
+            <md-card-content>
+                <div class="alert alert-success">
+                    {{ admin.successMessage }}
+                    <a ui-sref="actor({name:admin.newActorPageUrl, id:admin.newActorPageId})">View it now!</a>
+                </div>
+            </md-card-content>
+        </md-card>
+    </div>
+    <div layout="row" layout-align="center center" layout-margin class="ng-cloak">
+        <md-card class="md-whiteframe-z2" flex="66">
+            <md-card-content>
+                <h2>Page Creation</h2>
+                <form name="createActorPageForm" ng-submit="admin.createActorPage()" novalidate>
+                    <md-input-container>
+                        <label for="firstname">firstname</label>
+                        <input id="firstname" label="firstname" name="firstname" ng-model="admin.actorpageData.firstname" required/>
+                    </md-input-container>
+                    <md-input-container>
+                        <label for="lastname">lastname</label>
+                        <input id="lastname" label="lastname" name="lastname" ng-model="admin.actorpageData.lastname" required/>
+                    </md-input-container>
+
+
+                    <md-input-container>
+                        <label for="pictures">Upload Image with resizing...smaller image does not show warning message</label>
+                        <input id="pictures" label="Upload Images" name="pictures" ngf-select="upload($file)" ng-model="pictures" accept="image/*" ngf-max-size="5MB" ngf-validate="{width: {min: 1400, max:2000}, height: {min: 630, max: 900}}" ngf-resize="{width: 1600, height: 720, quality: 1.0}">
+                        <div ng-messages="createActorPageForm.pictures.$error"></div>
+                            <div ng-message="minWidth">
+                                Min Width has to be 1400.
+                            </div>
+                            <div ng-message="minHeight">
+                                Min height has to be 630.
+                            </div>
+                            <div ng-message="maxWidth">
+                                Max Width has to be 2000.
+                                <div ng-message="maxSize">
+                                    File is bigger than 2MB.
+                                </div>
+                            </div>
+                    </md-input-container>
+                    <img style="width:100%;" ngf-src="pictures">
+                    <div style="margin-bottom: 30px;"></div>
+                    <md-input-container>
+                        <label for="picture">Upload Image without resizing.</label>
+                        <input id="picture" label="Upload Images" name="picture" ngf-select="upload($file)" ng-model="picture" accept="image/*" ngf-max-size="5MB" ngf-validate="{width: {min: 1400, max:2000}, height: {min: 630, max: 900}}">
+                        <div ng-messages="createActorPageForm.picture.$error">
+                            <div ng-message="minWidth">
+                                Min Width has to be 1400.
+                            </div>
+                            <div ng-message="minHeight">
+                                Min height has to be 630.
+                            </div>
+                            <div ng-message="maxWidth">
+                                Max Width has to be 2000.
+                                <div ng-message="maxSize">
+                                    File is bigger than 2MB.
+                                </div>
+                            </div>
+                    </md-input-container>
+
+
+
+                    <img style="width:100%;" ngf-src="picture">
+
+                    <div class="button-toolbar" layout="row" layout-align="end center">
+                        <md-button class="md-primary" ng-disabled="createActorPageForm.$invalid" type="submit">Create</md-button>
+                    </div>
+                </form>
+
+            </md-card-content>
+        </md-card>
+    </div>
+</md-content>
+<!-- Angular Material Dependencies -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-aria.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-messages.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-scroll/0.7.3/angular-scroll.js"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/danialfarid-angular-file-upload/9.0.9/ng-file-upload.min.js"></script>
+</body>

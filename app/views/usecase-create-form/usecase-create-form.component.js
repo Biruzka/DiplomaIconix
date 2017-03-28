@@ -4,8 +4,6 @@ import './usecase-create-form.less';
 
 export default {
     bindings: {
-        // usecases: '<',
-        // removePerson: '&onRemoveButtonClick',
     },
     template
 }

@@ -11,6 +11,9 @@ import UsecaseCreateForm from './usecase-create-form';
 import StatusTable from './status-table';
 import PrototypeArea from './prototype-area';
 import Comments from './comments';
+import Enter from './enter';
+import PrototypeCreateForm from './prototype-create-form';
+import PrototypeUpdateArea from './prototype-update-area';
 
 const module = angular
   .module('app.views', [
@@ -22,7 +25,10 @@ const module = angular
     UsecaseCreateForm,
     StatusTable,
     PrototypeArea,
-    Comments
+    Comments,
+    Enter,
+    PrototypeCreateForm,
+    PrototypeUpdateArea
   ]);
 
 export default module.name;

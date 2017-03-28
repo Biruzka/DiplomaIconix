@@ -1,3 +1,5 @@
+// http://adrianmejia.com/blog/2014/10/01/creating-a-restful-api-tutorial-with-nodejs-and-mongodb/
+
 // Load mongoose package
 var mongoose = require('mongoose');
 // Connect to MongoDB and create/use database called todoAppTest

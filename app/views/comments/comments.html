@@ -1,43 +1,39 @@
-<!--<div class="comments-area" ng-repeat="usecase in $ctrl.usecases">-->
-<div class="comments-area">
-    <md-card>
+<md-card class="comments-area">
         <span class="comments">
-
              <md-card-title>
                 <md-card-title-text>
                     <span class="md-headline "> Комментарии: </span>
                 </md-card-title-text>
             </md-card-title>
 
-            <div class="comment-form">
+            <div class="comment-form" >
                <md-input-container class="md-block" flex-gt-sm>
                     <label>Тема</label>
                     <input md-maxlength="30" name="title" ng-model="comment.title" />
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-sm>
                     <label>Текст</label>
-                    <textarea ng-model="comment.text" md-maxlength="500" rows="3" md-select-on-focus></textarea>
+                    <textarea ng-model="comment.text" md-maxlength="500" rows="1" md-select-on-focus></textarea>
                 </md-input-container>
                 <section layout="row" layout-sm="column" layout-align="end centre">
-                    <md-button class="comment-form_button">Отправить</md-button>
+                    <md-button class="comment-form_button">Оставить комментарий</md-button>
                 </section>
             </div>
 
-            <span class="comment">
-            <md-card-title>
-                <md-card-title-text>
-                    <span class="md-headline comment_name"> Непонятная кнопка{{::usecase.code}} {{::usecase.name}}</span>
-                </md-card-title-text>
-            </md-card-title>
-            <md-card-content>
-                <p>
-                    Опишите подробнее ограничения кнопки перехода слева от меню!
-                </p>
-                <div layout="row" layout-align="end center" class="secondary-text">
-                    Lolipop Iosifich, 19/11/2016
-                </div>
-            </md-card-content>
+            <span class="comments">
+                <md-list>
+                    <md-divider></md-divider>
+                     <md-list-item>
+                      <div class="md-list-item-text">
+                        <p class="comment__name">Непонятная кнопка</p>
+                         <p class="comment__text">Опишите подробнее ограничения кнопки перехода слева от меню!</p>
+                        <p class="secondary-text">Lolipop Iosifich, 19/11/2016</p>
+                      </div>
+                    </md-list-item>
+                    <md-divider ></md-divider>
+                </md-list>
             </span>
+
         </span>
-    </md-card>
-</div>
+</md-card>
+

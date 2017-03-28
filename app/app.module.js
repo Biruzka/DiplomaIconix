@@ -7,6 +7,9 @@ import ngAnimate from 'angular-animate';
 import ngAria from 'angular-aria';
 import ngMaterial from 'angular-material';
 import ngData from 'angular-material-data-table';
+import ngFileUpload from 'ng-file-upload';
+// import ngResource from 'ng-resource';
+
 
 /* third-party styles */
 import 'angular-material/angular-material.css';
@@ -30,7 +33,9 @@ const module = angular
     ngAnimate,
     ngMaterial,
     ngData,
-    
+    ngFileUpload,
+
+
     ConfigModule,
     ComponentsModule,
     ViewsModule
@@ -38,8 +43,23 @@ const module = angular
 
 module
   .component('iconixApp', AppComponent)
-  .config(AppConfig);
-  
+  .config(AppConfig)
+  .factory('Usecases', ['$http', function($http){
+
+        return {
+            getAsync: getAsync,
+            save: save
+        };
+
+        function getAsync() {
+            return $http.get('http://0.0.0.0:4000/usecases');
+        }
+
+        function save(usecase) {
+            return $http.post('http://0.0.0.0:4000/usecases', usecase);
+        }
+    }]);
+
 export default module.name;
 
 

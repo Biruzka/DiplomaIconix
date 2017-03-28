@@ -1,0 +1,41 @@
+<iconix-enter></iconix-enter>
+<div layout="row" flex layout-align="center center" layout-align-sm="center start">
+    <section class="registration-container md-whiteframe-z1" layout-margin>
+        <md-content layout-padding>
+
+            <md-input-container md-no-float class="md-block">
+                <label>Название проекта</label>
+                <input ng-model="project.name" type="email">
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>Описание проекта</label>
+                <textarea ng-model="project.description" md-maxlength="500" rows="3" md-select-on-focus></textarea>
+            </md-input-container>
+            <md-input-container md-no-float class="md-block">
+                <label>Логин</label>
+                <input ng-model="user.login" type="password">
+            </md-input-container>
+            <md-input-container md-no-float class="md-block">
+                <label>Почта</label>
+                <input ng-model="user.email" type="password">
+            </md-input-container>
+            <md-input-container md-no-float class="md-block">
+                <label>Пароль</label>
+                <input ng-model="user.password" type="password">
+            </md-input-container>
+            <md-input-container md-no-float class="md-block">
+                <label>Повторить пароль</label>
+                <input ng-model="user.passwordRepeat" type="password">
+            </md-input-container>
+
+            <section layout="row" layout-align="center center">
+                <md-button ui-sref="userApp.loginPage" href="" class="md-raised md-primary" flex ng-click="logIn()">Создать проект</md-button>
+            </section>
+
+            <section layout="row" layout-sm="column" layout-align="space-around center" layout-wrap>
+                <md-button ui-sref="userApp.loginPage" class="md-primary"><span class="md-caption">Вернуться к странице входа</span></md-button>
+            </section>
+        </md-content>
+
+    </section>
+</div>

@@ -1,0 +1,97 @@
+<!--редактирование прототипа-->
+
+    <form name="prototypeUpdateForm" class="prototypeUpdateForm" class="md-whiteframe-2dp">
+        <div layout-gt-sm="raw" layout-align="space-around" class="md-whiteframe-1dp" layout-padding>
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>Кодовый номер</label>
+                <input md-maxlength="30" required name="name" ng-model="prototype.code" />
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>Название</label>
+                <input md-maxlength="50" required name="name" ng-model="prototype.name" />
+            </md-input-container>
+            <!--image-->
+            <md-input-container class="md-block" flex-gt-sm>
+                <label for="pictures">Загрузить файл</label>
+                <input id="pictures" label="Upload Images" name="pictures" ngf-select="upload($file)" ng-model="pictures" accept="image/*">
+            </md-input-container>
+            <!--image-->
+        </div>
+        <img style="width:100%;" ngf-src="pictures">
+        <!--<md-progress-linear md-mode="indeterminate"></md-progress-linear>-->
+        <section layout="row" layout-sm="column" layout-align="end centre" layout-wrap>
+            <md-button type="submit">Сохранить</md-button>
+            <md-button>Отмена</md-button>
+        </section>
+    </form>
+<!--редактирование прототипа-->
+
+<!--редактирование заметок прототипа-->
+<form name="prototypeUpdateForm" class="prototypeUpdateForm" class="md-whiteframe-2dp">
+    <div class="md-whiteframe-1dp" layout-padding>
+        <div layout-gt-sm="raw" layout-align="space-around">
+        <md-input-container class="md-block" flex-gt-sm>
+            <label>X</label>
+            <input required name="name" ng-model="note.x" />
+        </md-input-container>
+        <md-input-container class="md-block" flex-gt-sm>
+            <label>Y</label>
+            <input required name="name" ng-model="note.y" />
+        </md-input-container>
+        <md-input-container class="md-block" flex-gt-sm>
+            <label>Название заметки</label>
+            <input md-maxlength="50" required name="name" ng-model="note.name" />
+        </md-input-container>
+        </div>
+        <md-input-container class="md-block" flex-gt-sm>
+            <label>Текст заметки</label>
+            <textarea required ng-model="note.text" md-maxlength="700" rows="1" md-select-on-focus></textarea>
+        </md-input-container>
+    </div>
+    <section layout="row" layout-sm="column" layout-align="end centre" layout-wrap>
+        <md-button type="submit">Создать заметку</md-button>
+    </section>
+</form>
+
+<div class="prototype-update-base md-whiteframe-3dp" load-img="$ctrl.loadImage(image)" >
+    <div class="proto-update-img">
+        <img class="proto-update-img_picture" src="./resources/3.jpg" alt="">
+    </div>
+
+    <!--render all notes like this one-->
+    <div style="width: 100px; height: 100px; border: 4px double  #a3ffd3; position:absolute; top:10px; left: 10px">
+        <md-tooltip md-direction="bottom">
+            <div class="note">
+                Note in gap
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto atque eaque expedita facere fugit inventore ipsum, iusto molestiae odio officia quae sed, sit tempora totam voluptatum! Culpa doloremque facilis recusandae?
+            </div>
+        </md-tooltip>
+    </div>
+    <!--render all notes like this one-->
+</div>
+
+
+
+<md-card class="note-area">
+     <md-card-title>
+        <md-card-title-text>
+            <span class="md-headline "> Заметки: </span>
+        </md-card-title-text>
+    </md-card-title>
+
+    <span class="notes">
+        <md-list>
+             <md-list-item>
+              <div class="md-list-item-text">
+                  <p class="comment__name">Название заметки
+                  <p class="comment__text">Ограничения на поле: только буквы латинского алфавита</p>
+                  <p class="secondary-text">X:67 Y:45</p>
+              </div>
+            </md-list-item>
+            <md-divider ></md-divider>
+        </md-list>
+    </span>
+</md-card>
+
+<!--редактирование заметок прототипа-->
+

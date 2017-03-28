@@ -5,7 +5,7 @@ import controller from './prototype-area.controller';
 
 export default {
     bindings: {
-        loadImage: '&loadImg',
+        
     },
     template,
     controller

@@ -1,39 +1,31 @@
-<div class="enter">
-        <h1 class="accent-text">Iconix Manager</h1>
-        <h3 class="secondary-text ">Управление требованиями в разработке веб-приложений</h3>
+<iconix-enter></iconix-enter>
+<div layout="row" flex layout-align="center center" layout-align-sm="center start">
+    <section class="login-container md-whiteframe-z1" layout-margin>
+        <md-content layout-padding>
 
+            <md-input-container md-no-float class="md-block">
+                <label>Email</label>
+                <input ng-model="user.email" type="email">
+            </md-input-container>
 
-    <div layout="row" flex layout-align="center center" layout-align-sm="center start">
-        <section class="login-container md-whiteframe-z1" layout-margin>
-            <md-content layout-padding>
+            <md-input-container md-no-float class="md-block">
+                <label>Пароль</label>
+                <input ng-model="user.password" type="password">
+            </md-input-container>
 
-                <md-input-container md-no-float class="md-block">
-                    <label>Email</label>
-                    <input ng-model="user.email" type="email">
-                </md-input-container>
+            <md-input-container md-no-float class="md-block">
+                <label>Проект</label>
+                <input ng-model="user.title">
+            </md-input-container>
 
-                <md-input-container md-no-float class="md-block">
-                    <label>Пароль</label>
-                    <input ng-model="user.password" type="password">
-                </md-input-container>
+            <section layout="row" layout-align="center center">
+                <md-button ui-sref="userApp.projectsPage" href="" class="md-raised md-primary" flex ng-click="logIn()">Войти</md-button>
+            </section>
 
-                <md-input-container md-no-float class="md-block">
-                    <label>Проект</label>
-                    <input ng-model="user.title">
-                </md-input-container>
+            <section layout="row" layout-sm="column" layout-align="space-around center" layout-wrap>
+                <md-button ui-sref="userApp.registrationPage" class="md-primary"><span class="md-caption">Регистрация нового проекта</span></md-button>
+            </section>
+        </md-content>
 
-                <section layout="row" layout-align="center center">
-                    <md-button ui-sref="userApp.projectsPage" href="" class="md-raised md-primary" flex ng-click="logIn()">Войти</md-button>
-                </section>
-                <a ui-sref="userApp.projectsPage" href="">ПРОЕКТ</a>
-
-                <section layout="row" layout-sm="column" layout-align="space-around center" layout-wrap>
-                    <md-button class="md-primary"><span class="md-caption">Регистрация нового проекта</span></md-button>
-                </section>
-            </md-content>
-
-        </section>
-    </div>
+    </section>
 </div>
-
-
