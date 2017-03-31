@@ -4,6 +4,7 @@ import './usecase-create-form.less';
 
 export default {
     bindings: {
+        createUsecase: "&onCreateButtonClick"
     },
     template
 }

@@ -1,10 +1,23 @@
 var mongoose = require('mongoose');
 
 var PrototypeSchema = new mongoose.Schema({
-    id_project: String,
-    code:String,
-    name: String,
-    img: String,
+    id_project: {
+        type: String,
+        required: true
+    },
+    code:{
+        type: String,
+        unique: true,
+        required: true
+    },
+    name: {
+        type: String,
+        unique: true,
+        required: true
+    },
+    img: {
+        data: Buffer, contentType: String
+    },
     updated_at: { type: Date, default: Date.now }
 });
 

@@ -3,10 +3,13 @@
 // # Start Web Server on port 4000 (default is 3000)
 PORT=4000 nodemon
 // # Create a todo using the API
+curl -XPOST http://localhost:4000/projects -d 'name=Галерея&description=Салон красоты онлайн'
+    curl -XPOST http://localhost:4000/projects -d 'name=Team&description=веб-приложение для работы в команде'
+    58dcf9084568602131df8b66
 curl -XPOST http://localhost:4000/usecases -d 'code=001&name=регистрация...'
     // # => {"__v":0,"name":"Master Routes","completed":false,"note":"soon...","_id":"57a655997d2241695585ecf8"}%
 // # Get todo by ID (use the _id from the previous request, in my case "57a655997d2241695585ecf8")
-curl -XGET http://localhost:4000/usecases/58d273094997a3144c3050ee
+curl -XGET http://localhost:4000/usecases/58d273094997a3144c3050eecurl -XGET http://locurl -XGET http://localhost:4000/usecases/58d273094997a3144c3050eecalhost:4000/usecases/58d273094997a3144c3050ee
 // {"_id":"57a655997d2241695585ecf8","name":"Master Routes","completed":false,"note":"soon...","__v":0}%
 // # Get all elements (notice it is an array)
 curl -XGET http://localhost:4000/usecases

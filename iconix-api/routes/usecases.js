@@ -11,15 +11,12 @@ router.get('/', function(req, res, next) {
     res.json(usecases);
   });
 });
-//
-// router.get('/test', function (req, res, next) {
-//   Usecase.findByProjectId();
-// });
 
 /* POST /usecases */
 router.post('/', function(req, res, next) {
   Usecase.create(req.body, function (err, post) {
     if (err) return next(err);
+    res.header('Access-Control-Allow-Origin', '*');
     res.json(post);
   });
 });
@@ -28,6 +25,7 @@ router.post('/', function(req, res, next) {
 router.get('/:id', function(req, res, next) {
   Usecase.findById(req.params.id, function (err, post) {
     if (err) return next(err);
+    res.header('Access-Control-Allow-Origin', '*');
     res.json(post);
   });
 });
@@ -36,6 +34,7 @@ router.get('/:id', function(req, res, next) {
 router.put('/:id', function(req, res, next) {
   Usecase.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
     if (err) return next(err);
+    res.header('Access-Control-Allow-Origin', '*');
     res.json(post);
   });
 });
@@ -44,6 +43,7 @@ router.put('/:id', function(req, res, next) {
 router.delete('/:id', function(req, res, next) {
   Usecase.findByIdAndRemove(req.params.id, req.body, function (err, post) {
     if (err) return next(err);
+    res.header('Access-Control-Allow-Origin', '*');
     res.json(post);
   });
 });

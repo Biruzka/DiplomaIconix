@@ -1,8 +1,15 @@
 var mongoose = require('mongoose');
 
 var ProjectSchema = new mongoose.Schema({
-    name: String,
-    description: String,
+    name: {
+        type: String,
+        unique: true,
+        required: true
+    },
+    description: {
+        type: String,
+        required: true
+    },
     updated_at: { type: Date, default: Date.now }
 });
 

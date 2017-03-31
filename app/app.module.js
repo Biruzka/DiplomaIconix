@@ -41,9 +41,59 @@ const module = angular
     ViewsModule
   ]);
 
+// function currentSession () {
+//
+//     this.currentProjectName = 'Team';
+//     this.currentProject = Projects.getAsyncByName(this.currentProjectName);
+//     this.currentUser;
+//     console.log(this.currentProject + "hey");
+// }
+
 module
   .component('iconixApp', AppComponent)
   .config(AppConfig)
+  // .service('currentSession', currentSession)
+  .service('currentSession', ['$http', 'Projects', function($http, Projects){
+      this.currentProjectName = '';
+      this.currentProject = {};
+      var that = this;
+
+      this.setCurrentProjectName = function(name) {
+          that.currentProjectName = name;
+          that.setProject();
+      };
+
+      this.setProject = function() {
+          that.currentProject = Projects.getAsyncByName(that.currentProjectName);
+      };
+
+      this.getCurrentProjectName = function() {
+          return that.currentProjectName;
+      };
+
+      this.getCurrentProject = function() {
+          return that.currentProject;
+      };
+
+      this.getCurrentProjectId = function() {
+          if (that.currentProject.$$state != undefined) {
+              return that.currentProject.$$state.value.data._id
+          };
+          return undefined;
+      };
+
+    }])
+  .factory('Projects', ['$http', function($http){
+
+        return {
+            getAsyncByName: getAsyncByName,
+        };
+
+        function getAsyncByName(name) {
+            console.log("function");
+            return $http.get('http://0.0.0.0:4000/projects/' + name, name);
+        }
+    }])
   .factory('Usecases', ['$http', function($http){
 
         return {
