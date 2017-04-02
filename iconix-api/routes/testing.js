@@ -21,3 +21,6 @@ curl -XPUT http://localhost:4000/usecases/58d273094997a3144c3050ee -d "name=ав
     // # => {"_id":"57a655997d2241695585ecf8","name":"Master Routes","completed":true,"note":"hola","__v":0}%
 
 curl -XDELETE http://localhost:4000/usecases/58d273094997a3144c3050ee 
+
+
+    58dcf9084568602131df8b66

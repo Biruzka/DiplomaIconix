@@ -2,15 +2,15 @@
 import AngularObject from 'helpers/angular-object';
 
 export default class UsecasePageCtrl extends AngularObject {
-    constructor ($mdDialog, $http, Usecases) {
+    constructor ($mdDialog, $http, Usecases, currentSession) {
         'ngInject';
-        super($mdDialog, $http, Usecases);
+        super($mdDialog, $http, Usecases, currentSession);
 
         this.usecases = "hey";
         var that=this;
 
         Usecases
-            .getAsync()
+            .getAsync(this.currentSession.getCurrentProjectId())
             .then(function(response){
                 that.usecases = response.data;
                 console.log(response.data, response.status);

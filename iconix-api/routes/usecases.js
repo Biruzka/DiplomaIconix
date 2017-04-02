@@ -12,19 +12,38 @@ router.get('/', function(req, res, next) {
   });
 });
 
-/* POST /usecases */
-router.post('/', function(req, res, next) {
-  Usecase.create(req.body, function (err, post) {
+router.get('/:id_project', function(req, res, next) {
+  Usecase.find({id_project: req.params['id_project']}, function (err, usecases) {
     if (err) return next(err);
     res.header('Access-Control-Allow-Origin', '*');
+    res.json(usecases);
+  });
+});
+
+/* POST /usecases */
+router.post('/', function(req, res, next) {
+  console.log(req + "gbfdfrerg");
+  Usecase.create(req.body, function (err, post) {
+    res.header("Access-Control-Allow-Methods", '*');
+    res.header("Access-Control-Allow-Headers", '*');
+    res.header('Access-Control-Allow-Origin', '*');
+    console.log(post);
+    console.log(err);
+    if (err) return next(err);
+
     res.json(post);
   });
 });
+
+// router.post('/', function (req, res, next) {
+//   console.log(req);
+// });
 
 /* GET /todos/id */
 router.get('/:id', function(req, res, next) {
   Usecase.findById(req.params.id, function (err, post) {
     if (err) return next(err);
+
     res.header('Access-Control-Allow-Origin', '*');
     res.json(post);
   });

@@ -45,7 +45,14 @@ export default class UsecaseCreatePageCtrl extends AngularObject {
         usecase.id_project = this.idProject;
         console.log(usecase);
 
-        console.log("answer from server" + this.Usecases.save(usecase));
+        this.Usecases.save(usecase)
+            .then(function(response){
+                console.log("success "+response.data, response.status);
+            },
+            function(response) {
+                console.log("fail! ");
+                console.log(response);
+            });
     }
 };
 

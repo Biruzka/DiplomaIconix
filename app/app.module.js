@@ -79,7 +79,7 @@ module
           if (that.currentProject.$$state != undefined) {
               return that.currentProject.$$state.value.data._id
           };
-          return undefined;
+          return "58dcf9084568602131df8b66";
       };
 
     }])
@@ -101,12 +101,18 @@ module
             save: save
         };
 
-        function getAsync() {
-            return $http.get('http://0.0.0.0:4000/usecases');
+        function getAsync(id_project) {
+            return $http.get('http://0.0.0.0:4000/usecases/'+id_project, {
+                params: {
+                    
+                }
+            });
         }
 
         function save(usecase) {
             return $http.post('http://0.0.0.0:4000/usecases', usecase);
+            // return $http.post('http://127.0.0.1:4000/usecases/', usecase);
+
         }
     }]);
 
