@@ -5,7 +5,10 @@ import controller from './prototype-area.controller';
 
 export default {
     bindings: {
-        
+        prototypes: '<',
+        selectedPrototype: '<',
+        currentPrototypeNotes:'<',
+        getNotes: '&onSelectButtonClick'
     },
     template,
     controller

@@ -41,18 +41,9 @@ const module = angular
     ViewsModule
   ]);
 
-// function currentSession () {
-//
-//     this.currentProjectName = 'Team';
-//     this.currentProject = Projects.getAsyncByName(this.currentProjectName);
-//     this.currentUser;
-//     console.log(this.currentProject + "hey");
-// }
-
 module
   .component('iconixApp', AppComponent)
   .config(AppConfig)
-  // .service('currentSession', currentSession)
   .service('currentSession', ['$http', 'Projects', function($http, Projects){
       this.currentProjectName = '';
       this.currentProject = {};
@@ -111,10 +102,50 @@ module
 
         function save(usecase) {
             return $http.post('http://0.0.0.0:4000/usecases', usecase);
-            // return $http.post('http://127.0.0.1:4000/usecases/', usecase);
+
+        }
+    }])
+    .factory('Prototypes', ['$http', function($http){
+
+        return {
+            getAsync: getAsync,
+            save: save
+        };
+
+        function getAsync(id_project) {
+            return $http.get('http://0.0.0.0:4000/prototypes/'+id_project, {
+                params: {
+
+                }
+            });
+        }
+
+        function save(prototype) {
+            return $http.post('http://0.0.0.0:4000/prototypes',prototype);
+
+        }
+    }])
+    .factory('Notes', ['$http', function($http){
+
+        return {
+            getAsync: getAsync,
+            save: save
+        };
+
+        function getAsync(id_prototype) {
+            return $http.get('http://0.0.0.0:4000/notes/'+id_prototype, {
+                params: {
+
+                }
+            });
+        }
+
+        function save(note) {
+            return $http.post('http://0.0.0.0:4000/notes',note);
 
         }
     }]);
+
 
 export default module.name;
 

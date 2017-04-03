@@ -20,24 +20,6 @@ export default class UsecasePageCtrl extends AngularObject {
                 console.log(response);
             });
 
-        console.log(that.usecases);
-
-
-        // this.data = 'нууу data';
-        // this.status='нууу status';
-        // console.log('data'+ this.data);
-        //
-        // $http.get("//localhost:4000/usecases")
-        //     .then(function(response) {
-        //         console.log("OK"+response.data[0].name);
-        //         that.data = response.data[0].name;
-        //         alert(that.data);
-        //     },
-        //     function(response) {
-        //         console.log("faild" + response.data);
-        //     });
-
-
         // this.usecases = [{
         //     code: '001',
         //     name: 'Создание документа',

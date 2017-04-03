@@ -1,10 +1,10 @@
 <div layout-gt-sm="raw" layout-align="space-between" class="prototype-menu">
     <md-input-container class="md-block" flex-gt-sm>
         <label>Прототип</label>
-        <md-select name="type" ng-model="usecase.testing" >
-            <md-option value="success">001 Открытие счета</md-option>
-            <md-option value="fail">002 Создание продукта</md-option>
+        <md-select name="type" ng-model="$ctrl.selectedPrototype" ng-model-options="{trackBy: '$value.id'}" ng-change="$ctrl.getNotes({prototype: $ctrl.selectedPrototype})">
+            <md-option ng-value="prototype" ng-repeat="prototype in $ctrl.prototypes">{{ prototype.code }} {{ prototype.name }}</md-option>
         </md-select>
+        {{$ctrl.selectedPrototype._id + "here"}}
     </md-input-container>
     <div flex="30" hide-xs hide-sm>
         <!-- Spacer //-->
@@ -15,34 +15,38 @@
     </section>
 </div>
 
-<div class="prototype-base md-whiteframe-3dp" load-img="$ctrl.loadImage(image)" >
+<div class="prototype-base md-whiteframe-3dp" load-img="$ctrl.loadImage(image)" ng-mouseenter="options2=false" ng-mouseleave="options2=true">
     <div class="proto-img">
         <img class="proto-img_picture" src="./resources/3.jpg" alt="">
     </div>
 
+    <!--render all notes like this one-->
+    <!--<span ng-mouseenter="options=true" ng-mouseleave="options=false" class="icon" ng-hide="options2 || checkbox">-->
+        <!--<div style="width: 100px; height: 100px; border: 4px double  #a3ffd3; position:absolute; top:10px; left: 10px" ng-hide="options || checkbox" >-->
+        <!--</div>-->
+        <!--<div class="note" style=" top:10px; left: 10px;" ng-show="options || checkbox">-->
+            <!--<h2>Note in gap</h2>-->
+            <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, ab assumenda debitis deleniti enim est laboriosam modi placeat quasi quod repellendus ut voluptatibus. Et facilis hic laboriosam omnis rerum similique?</p>-->
+        <!--</div>-->
+    <!--</span>-->
+    <!--render all notes like this one-->
 
-here
-    <!--<div ng-repeat="data in items | orderBy:'-timestamp'">-->
-    <div >
-        <div ng-mouseenter="options=true" ng-mouseleave="options=false" class="icon">
-            <i ng-hide="options || checkbox">1</i>
-            <span ng-show="options || checkbox">2</span>
-        </div>
-    </div>
-    <input type='checkbox' ng-model="checkbox" ng-click="options=!options">Show
-here
 
     <!--render all notes like this one-->
-    <div data-tooltip="HTML<br>подсказка" style="width: 100px; height: 100px; border: 4px double  #a3ffd3; position:absolute; top:10px; left: 10px">
-        <md-tooltip md-direction="bottom">
-            <div class="note">
-            Note in gap
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto atque eaque expedita facere fugit inventore ipsum, iusto molestiae odio officia quae sed, sit tempora totam voluptatum! Culpa doloremque facilis recusandae?
+    uuuuu {{$ctrl.currentPrototypeNotes}}
+        <span  ng-repeat="note in $ctrl.currentPrototypeNotes">
+            object{{note}}object
+            <div style="width: 100px; height: 100px; border: 4px double  #a3ffd3; position:absolute; top:10px; left: 10px"  >
             </div>
-        </md-tooltip>
-    </div>
+            <div class="note" style=" top:10px; left: 10px;" >
+            <h2>{{note.title}}</h2>
+            <p>{{note.text}}</p>
+            </div>
+        </span>
     <!--render all notes like this one-->
+
 </div>
+<!--<input type='checkbox' ng-model="checkbox" ng-click="options2=!options2">Показ заметок-->
 
 <!-- Плавающая конопка добавления -->
 <a ui-sref="userApp.prototypeCreatePage" href="">
