@@ -89,7 +89,9 @@ module
 
         return {
             getAsync: getAsync,
-            save: save
+            save: save,
+            getById: getById,
+            update: update
         };
 
         function getAsync(id_project) {
@@ -100,8 +102,21 @@ module
             });
         }
 
+        function getById(id) {
+          return $http.get('http://0.0.0.0:4000/usecases/id/'+id, {
+              params: {
+
+              }
+          });
+        }
+
         function save(usecase) {
             return $http.post('http://0.0.0.0:4000/usecases', usecase);
+
+        }
+
+        function update(usecaseId, usecase) {
+          return $http.put('http://0.0.0.0:4000/usecases/'+usecaseId, usecase);
 
         }
     }])

@@ -35,15 +35,12 @@ router.post('/', function(req, res, next) {
   });
 });
 
-// router.post('/', function (req, res, next) {
-//   console.log(req);
-// });
-
 /* GET /todos/id */
-router.get('/:id', function(req, res, next) {
+router.get('/id/:id', function(req, res, next) {
   Usecase.findById(req.params.id, function (err, post) {
     if (err) return next(err);
-
+    res.header("Access-Control-Allow-Methods", '*');
+    res.header("Access-Control-Allow-Headers", '*');
     res.header('Access-Control-Allow-Origin', '*');
     res.json(post);
   });

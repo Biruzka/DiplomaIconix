@@ -14,6 +14,7 @@ import Comments from './comments';
 import Enter from './enter';
 import PrototypeCreateForm from './prototype-create-form';
 import PrototypeUpdateArea from './prototype-update-area';
+import UsecaseUpdateForm from './usecase-update-form';
 
 const module = angular
   .module('app.views', [
@@ -28,7 +29,8 @@ const module = angular
     Comments,
     Enter,
     PrototypeCreateForm,
-    PrototypeUpdateArea
+    PrototypeUpdateArea,
+    UsecaseUpdateForm
   ]);
 
 export default module.name;

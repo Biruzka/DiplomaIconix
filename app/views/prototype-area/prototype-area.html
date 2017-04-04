@@ -21,32 +21,17 @@
     </div>
 
     <!--render all notes like this one-->
-    <!--<span ng-mouseenter="options=true" ng-mouseleave="options=false" class="icon" ng-hide="options2 || checkbox">-->
-        <!--<div style="width: 100px; height: 100px; border: 4px double  #a3ffd3; position:absolute; top:10px; left: 10px" ng-hide="options || checkbox" >-->
-        <!--</div>-->
-        <!--<div class="note" style=" top:10px; left: 10px;" ng-show="options || checkbox">-->
-            <!--<h2>Note in gap</h2>-->
-            <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, ab assumenda debitis deleniti enim est laboriosam modi placeat quasi quod repellendus ut voluptatibus. Et facilis hic laboriosam omnis rerum similique?</p>-->
-        <!--</div>-->
-    <!--</span>-->
-    <!--render all notes like this one-->
-
-
-    <!--render all notes like this one-->
-    uuuuu {{$ctrl.currentPrototypeNotes}}
         <span  ng-repeat="note in $ctrl.currentPrototypeNotes">
-            object{{note}}object
-            <div style="width: 100px; height: 100px; border: 4px double  #a3ffd3; position:absolute; top:10px; left: 10px"  >
+            <div style="width: 10px; height: 10px; border: 4px double  #a3ffd3; position:absolute; top:{{note.y}}px; left: {{note.y}}px"  ng-hide="options || checkbox" ng-mouseenter="options=true" ng-mouseleave="options=false" >
             </div>
-            <div class="note" style=" top:10px; left: 10px;" >
-            <h2>{{note.title}}</h2>
+            <div class="note" style=" top:{{note.y}}px; left: {{note.x}}px;" ng-show="options || checkbox">
+            <h4>{{note.title}}</h4>
             <p>{{note.text}}</p>
             </div>
         </span>
     <!--render all notes like this one-->
 
 </div>
-<!--<input type='checkbox' ng-model="checkbox" ng-click="options2=!options2">Показ заметок-->
 
 <!-- Плавающая конопка добавления -->
 <a ui-sref="userApp.prototypeCreatePage" href="">

@@ -7,7 +7,7 @@ export default {
     bindings: {
         prototypes: '<',
         selectedPrototype: '<',
-        currentPrototypeNotes:'<',
+        currentPrototypeNotes: '<',
         getNotes: '&onSelectButtonClick'
     },
     template,

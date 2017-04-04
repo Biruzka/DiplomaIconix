@@ -13,6 +13,7 @@ import StatusPageModule from './status-page';
 import RegistrationModule from './registration-page';
 import PrototypeCreateModule from './prototype-create-page';
 import PrototypeUpdateModule from './prototype-update-page';
+import UsecaseUpdatePageModule from './usecase-update-page';
 
 const module = angular
   .module('app.components', [
@@ -26,7 +27,8 @@ const module = angular
     StatusPageModule,
     RegistrationModule,
     PrototypeCreateModule,
-    PrototypeUpdateModule
+    PrototypeUpdateModule,
+    UsecaseUpdatePageModule
   ]);
 
 export default module.name;

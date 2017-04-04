@@ -1,5 +1,3 @@
-import tmp from './new.html'
-
 import angular from 'angular';
 
 /* component */

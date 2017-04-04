@@ -28,17 +28,12 @@ export default class PrototypesPageCtrl extends AngularObject {
                 .then((function(response){
                     console.log("success "+response.data, response.status);
                     this.currentPrototypeNotes = response.data;
-                    console.log("this");
-                    console.log(this);
-                    console.log("this");
-                    console.log(this.currentPrototypeNotes[0].title + "fd"); // элемент
                     }).bind(this))
                 .catch (function (error) {
                     console.log("fail! ");
                     console.log(error);
                     }
                 );
-            console.log(that.currentPrototypeNotes[0].title + "fdddd"); //undefined
         }
 };
 
