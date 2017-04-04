@@ -22,11 +22,11 @@
                 </p>
             </md-card-content>
             <md-card-actions layout="row" layout-align="end center">
-                <md-button>
+                <md-button data-ng-click="$ctrl.removeUsecase({index: $index, usecase: usecase})">
                     Удалить
                 </md-button>
                 <a class="usecase__a" ui-sref="userApp.usecaseUpdatePage({usecaseId: usecase._id})">
-                <md-button>
+                <md-button >
                     Изменить
                 </md-button>
                 </a>

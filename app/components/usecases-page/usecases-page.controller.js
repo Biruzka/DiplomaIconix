@@ -19,45 +19,29 @@ export default class UsecasePageCtrl extends AngularObject {
                 console.log("fail!");
                 console.log(response);
             });
-
-        // this.usecases = [{
-        //     code: '001',
-        //     name: 'Создание документа',
-        //     actor: 'пользователь',
-        //     precondition: 'на странице "документы"',
-        //     scenario: 'нажимаем на кнопку fab, заполяем обязательные поля формы, нажимаем сохранить',
-        //     result: 'документ в базе данных'
-        // }, {
-        //     code: '002',
-        //     name: 'Добавление продукта',
-        //     actor: 'предприниматель',
-        //     precondition: 'на странице личный кабинет',
-        //     scenario: 'нажать на кнопку fab, загрузить изображение, добавить описание, сохранить',
-        //     result: 'продукт отображается на странице продуктов'
-        // }, {
-        //     code: '003',
-        //     name: 'Добавление клиента',
-        //     actor: 'предприниматель',
-        //     precondition: 'на странице покупатели',
-        //     scenario: 'нажать на клиента, выбрать магазин, сохранить',
-        //     result: 'клиент в списке клиентов'
-        // }, {
-        //     code: '004',
-        //     name: 'Комментирование продукта',
-        //     actor: 'пользователь',
-        //     precondition: 'на странице продукта',
-        //     scenario: 'нажать на кнопку добавить комментарий, заполнить форму, сохранить',
-        //     result: 'комментарий отображается в списке комментариев'
-        // }]
     }
 
     removeUsecase(index, usecase) {
         const removeDialog = this._buildRemoveConfirmDialog(usecase);
-
         this.$mdDialog
             .show(removeDialog)
-            .then(() => {console.log('success')})
-            .catch(() => {console.log('error')});
+            .then(() => {
+                console.log('success');
+                this.Usecases.delete(usecase._id)
+                    .then((function(response){
+                        console.log("success "+response.data, response.status);
+                        this.usecases.splice(index, 1);
+                    }).bind(this))
+                    .catch (function (error) {
+                            console.log("fail! ");
+                            console.log(error);
+                        }
+                    );
+            })
+            .catch(() => {
+                console.log("fail");
+                console.log('error')
+            });
     }
 
     _buildRemoveConfirmDialog(usecase) {
@@ -67,8 +51,37 @@ export default class UsecasePageCtrl extends AngularObject {
             .ariaLabel('removeUsecaseDialog')
             .ok('УДАЛИТЬ')
             .cancel('ОТМЕНА')
-            .textContent(`Вы действительно хотите удалить usecase 
+            .textContent(`Вы действительно хотите удалить usecase:  
             ${usecase.code} ${usecase.name}?`);
     }
 };
 
+// this.usecases = [{
+//     code: '001',
+//     name: 'Создание документа',
+//     actor: 'пользователь',
+//     precondition: 'на странице "документы"',
+//     scenario: 'нажимаем на кнопку fab, заполяем обязательные поля формы, нажимаем сохранить',
+//     result: 'документ в базе данных'
+// }, {
+//     code: '002',
+//     name: 'Добавление продукта',
+//     actor: 'предприниматель',
+//     precondition: 'на странице личный кабинет',
+//     scenario: 'нажать на кнопку fab, загрузить изображение, добавить описание, сохранить',
+//     result: 'продукт отображается на странице продуктов'
+// }, {
+//     code: '003',
+//     name: 'Добавление клиента',
+//     actor: 'предприниматель',
+//     precondition: 'на странице покупатели',
+//     scenario: 'нажать на клиента, выбрать магазин, сохранить',
+//     result: 'клиент в списке клиентов'
+// }, {
+//     code: '004',
+//     name: 'Комментирование продукта',
+//     actor: 'пользователь',
+//     precondition: 'на странице продукта',
+//     scenario: 'нажать на кнопку добавить комментарий, заполнить форму, сохранить',
+//     result: 'комментарий отображается в списке комментариев'
+// }]

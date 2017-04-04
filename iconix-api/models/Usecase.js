@@ -21,18 +21,15 @@ var UsecaseSchema = new mongoose.Schema({
     result: String,
     status: {
         type: String,
-        default: 'waiting',
-        // enum: ['approval', 'waiting', 'development', 'release'],
+        default: 'waiting'
     },
     testing: {
         type: String,
-        default: 'nil',
-        // enum: ['succcess','failure','nil'],
+        default: 'nil'
     },
     importance: {
         type: String,
-        default: 'A',
-        // enum: ['A','B','C'],
+        default: 'A'
     },
     deadline_data: Date,
     updated_at: { type: Date, default: Date.now },

@@ -91,7 +91,8 @@ module
             getAsync: getAsync,
             save: save,
             getById: getById,
-            update: update
+            update: update,
+            delete: deleteById
         };
 
         function getAsync(id_project) {
@@ -104,6 +105,14 @@ module
 
         function getById(id) {
           return $http.get('http://0.0.0.0:4000/usecases/id/'+id, {
+              params: {
+
+              }
+          });
+        }
+
+        function deleteById(id) {
+          return $http.delete('http://0.0.0.0:4000/usecases/'+id, {
               params: {
 
               }

@@ -16,7 +16,8 @@ var PrototypeSchema = new mongoose.Schema({
         required: true
     },
     img: {
-        data: Buffer, contentType: String
+        // data: Buffer, contentType: String
+        type: String
     },
     updated_at: { type: Date, default: Date.now }
 });

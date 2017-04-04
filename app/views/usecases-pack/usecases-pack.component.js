@@ -5,7 +5,7 @@ import './usecases-pack.less';
 export default {
     bindings: {
         usecases: '<',
-        removePerson: '&onRemoveButtonClick',
+        removeUsecase: '&onRemoveButtonClick',
     },
     template
 }
