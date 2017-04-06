@@ -8,8 +8,9 @@ import ngAria from 'angular-aria';
 import ngMaterial from 'angular-material';
 import ngData from 'angular-material-data-table';
 import ngFileUpload from 'ng-file-upload';
-// import ngResource from 'ng-resource';
-
+import ngCookies from 'angular-cookies';
+// import angularFileUpload from 'angular-file-upload';
+// var angularFileUpload = require('../node_modules/angular-file-upload/dist/angular-file-upload.min');
 
 /* third-party styles */
 import 'angular-material/angular-material.css';
@@ -33,8 +34,9 @@ const module = angular
     ngAnimate,
     ngMaterial,
     ngData,
-    ngFileUpload,
-
+    // ngFileUpload,
+    ngCookies,
+      // angularFileUpload,
 
     ConfigModule,
     ComponentsModule,
@@ -44,32 +46,41 @@ const module = angular
 module
   .component('iconixApp', AppComponent)
   .config(AppConfig)
-  .service('currentSession', ['$http', 'Projects', function($http, Projects){
-      this.currentProjectName = '';
-      this.currentProject = {};
+  .service('currentSession', ['$http', 'Projects', '$cookies', function($http, Projects, $cookies){
       var that = this;
-
       this.setCurrentProjectName = function(name) {
-          that.currentProjectName = name;
+          $cookies.put('projectName', name);
           that.setProject();
       };
 
       this.setProject = function() {
-          that.currentProject = Projects.getAsyncByName(that.currentProjectName);
+          Projects.getAsyncByName($cookies.get('projectName'))
+              .then((function(response){
+                  console.log("success "+response.data, response.status);
+                  $cookies.putObject('currentProject', response.data);
+              }).bind(that))
+
+              .catch (function (error) {
+                      console.log("fail! ");
+                      console.log(error);
+                  }
+              );
       };
 
       this.getCurrentProjectName = function() {
-          return that.currentProjectName;
+          return $cookies.get('projectName');
       };
 
       this.getCurrentProject = function() {
-          return that.currentProject;
+          return $cookies.getObject("currentProject");
       };
 
       this.getCurrentProjectId = function() {
-          if (that.currentProject.$$state != undefined) {
-              return that.currentProject.$$state.value.data._id
-          };
+          var currentProject = $cookies.getObject("currentProject");
+          console.log("current ID " + currentProject);
+          if (currentProject._id != undefined) {
+              return currentProject._id;
+          }
           return "58dcf9084568602131df8b66";
       };
 
@@ -168,7 +179,84 @@ module
             return $http.post('http://0.0.0.0:4000/notes',note);
 
         }
+    }])
+    .factory('Authentication', ['$http', '$q', '$timeout', function($http, $q, $timeout){
+
+        var authenticatedUser = null;
+
+        return  {
+            requestUser: function()
+            {
+                var deferred = $q.defer();
+
+                $http.get('/api/user.json').success(function(user)
+                {
+                    $timeout(function()
+                    {
+                        // Check if user is defined first
+                        if(user) {
+
+                            authenticatedUser = user;
+                        }
+
+                        deferred.resolve(authenticatedUser);
+                    }, 1000);
+
+                }).error(function(error)
+                {
+                    deferred.reject(error);
+                });
+
+                return deferred.promise;
+            },
+
+            getUser: function()
+            {
+                return authenticatedUser;
+            },
+
+            exists: function()
+            {
+                return authenticatedUser != null;
+            },
+
+            login: function(credentials)
+            {
+                var deferred = $q.defer();
+
+                $http.post('/auth/login', credentials).success(function(user)
+                {
+                    if(user)
+                    {
+                        authenticatedUser = user;
+                        deferred.resolve(user);
+                    }
+                    else
+                    {
+                        deferred.reject('Given credentials are incorrect');
+                    }
+
+                }).error(function(error)
+                {
+                    deferred.reject(error);
+                });
+
+                return deferred.promise;
+            },
+
+
+            logout: function()
+            {
+                authenticatedUser = null;
+            },
+
+            isDeveloper: function()
+            {
+                return this.exists() && authenticatedUser.type == 'developer';
+            }
+        }
     }]);
+
 
 
 export default module.name;

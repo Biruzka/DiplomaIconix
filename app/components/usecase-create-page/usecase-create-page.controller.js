@@ -10,33 +10,11 @@ export default class UsecaseCreatePageCtrl extends AngularObject {
         var that = this;
         this.idProject = "58dcf9084568602131df8b66";
 
-
-
-        // Usecases
-        //     .save(currentSession.currentProjectName)
-        //     .then(function(response){
-        //             that.project = response.data;
-        //             console.log(response.data, response.status);
-        //         },
-        //         function(response) {
-        //             console.log("fail!");
-        //             console.log(response);
-        //         });
-
-        // Projects
-        //     .getAsyncByName(currentSession.currentProjectName)
-        //     .then(function(response){
-        //             that.project = response.data;
-        //             console.log(response.data, response.status);
-        //         },
-        //         function(response) {
-        //             console.log("fail!");
-        //             console.log(response);
-        //         });
     }
 
 
     createUsecase(usecase) {
+
         if (this.currentSession.getCurrentProjectId()!=undefined) {
             this.idProject = this.currentSession.getCurrentProjectId();
         };

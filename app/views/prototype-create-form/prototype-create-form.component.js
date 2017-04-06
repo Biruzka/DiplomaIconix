@@ -4,6 +4,7 @@ import './prototype-create-form.less';
 
 export default {
     bindings: {
+        createPrototype: "&onCreateButtonClick"
     },
     template
 }

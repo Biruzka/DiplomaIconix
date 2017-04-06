@@ -17,7 +17,7 @@ module
     $stateProvider
       .state('userApp.projectsPage', {
         url: '/projects',
-        component: 'iconixProjectsPage'
+        component: 'iconixProjectsPage',
       })
   });
 

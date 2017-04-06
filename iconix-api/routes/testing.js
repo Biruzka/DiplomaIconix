@@ -4,6 +4,8 @@
 PORT=4000 nodemon
 // # Create a todo using the API
 curl -XPOST http://localhost:4000/projects -d 'name=Галерея&description=Салон красоты онлайн'
+    login: чувак, email: ficus@mail.ru, projects: [{pr1Name:Team, password: 123, access: user},{pr2Name:Галерея, password: 123, access: admin}]
+    curl -XPOST http://localhost:4000/users -d 'login=чувак&email=ficus@mail.ru&projects={pr1Name:Team, password: 123, access: user},{pr2Name:Галерея, password: 123, access: admin}'
     curl -XPOST http://localhost:4000/prototypes -d 'id_project=58dcf9084568602131df8b66&name=Страница прототипы&code=0002'
     curl -XPOST http://localhost:4000/projects -d 'name=Team&description=веб-приложение для работы в команде'
     curl -XPOST http://localhost:4000/notes -d 'id_prototype=58e0a4f9f1af8f1be9a212be&title=все сотрудники&text=список с полями: имя, почта, должность. рядом с каждым кнопка - удалить&x=5&y=60'

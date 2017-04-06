@@ -27,7 +27,7 @@ module
 
         $stateProvider
             .state('userApp.prototypeUpdatePage', {
-                url: '/prototype-update',
+                url: '/prototype-update/:prototypeId',
                 component: 'iconixPrototypeUpdatePage'
             })
     });

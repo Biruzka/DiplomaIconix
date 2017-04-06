@@ -1,21 +1,21 @@
 
-    <form name="usecaseForm" class="prototypeCreateForm" class="md-whiteframe-2dp">
+    <form name="prototypeForm" class="prototypeCreateForm" class="md-whiteframe-2dp">
         <div layout-gt-sm="raw" layout-align="space-around" class="md-whiteframe-1dp usecaseForm__area usecaseForm__area_top" layout-padding>
             <md-input-container class="md-block" flex-gt-sm>
                 <label>Кодовый номер</label>
-                <input md-maxlength="30" required name="name" ng-model="prototype.code" />
+                <input md-maxlength="30" required name="name" ng-model="$ctrl.prototype.code" />
             </md-input-container>
             <div flex="5" hide-xs hide-sm>
                 <!-- Spacer //-->
             </div>
             <md-input-container class="md-block" flex-gt-sm>
                 <label>Название</label>
-                <input md-maxlength="50" required name="name" ng-model="prototype.name" />
+                <input md-maxlength="50" required name="name" ng-model="$ctrl.prototype.name" />
             </md-input-container>
         </div>
         <!--<md-progress-linear md-mode="indeterminate"></md-progress-linear>-->
         <section layout="row" layout-sm="column" layout-align="end centre" layout-wrap>
-            <md-button>Сохранить</md-button>
+            <md-button ng-click="$ctrl.createPrototype({prototype: $ctrl.prototype})">Сохранить</md-button>
             <md-button>Отмена</md-button>
         </section>
     </form>

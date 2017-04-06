@@ -2,9 +2,9 @@
 import AngularObject from 'helpers/angular-object';
 
 export default class StuffPageCtrl extends AngularObject {
-  constructor ($mdDialog) {
+  constructor ($mdDialog, $stateParams) {
     'ngInject';
-    super($mdDialog);
+    super($mdDialog, $stateParams);
 
     this.stuff = [{
       email: 'biruzka@gmail.com',

@@ -2,12 +2,13 @@
 import AngularObject from 'helpers/angular-object';
 
 export default class PrototypeUpdatePageCtrl extends AngularObject {
-    constructor ($scope, $element, $mdSidenav, $document, $http) {
+    constructor ($scope, $http) {
         'ngInject';
-        super($http);
+        super($scope, $http);
     }
 
     upload(file) {
+        console.log("файлииииик");
         console.log (file);
         if (file) {
             // create an object for the ids

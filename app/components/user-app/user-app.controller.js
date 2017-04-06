@@ -2,9 +2,9 @@
 import AngularObject from 'helpers/angular-object';
 
 export default class UserAppCtrl extends AngularObject {
-  constructor($mdSidenav) {
+  constructor($mdSidenav, $stateParams) {
     'ngInject';
-    super($mdSidenav);
+    super($mdSidenav, $stateParams);
 
     this.SIDE_MENU_ID = 'menu';
   }

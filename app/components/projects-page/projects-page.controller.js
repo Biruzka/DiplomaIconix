@@ -2,12 +2,12 @@
 import AngularObject from 'helpers/angular-object';
 
 export default class StuffPageCtrl extends AngularObject {
-    constructor ($mdDialog) {
+    constructor ($mdDialog, $stateParams) {
         'ngInject';
-        super($mdDialog);
+        super($mdDialog, $stateParams);
 
         this.project = {
-            name: 'Стартапчик',
+            name: 'стартапчик',
             description: 'ниче такой'
         }
     }

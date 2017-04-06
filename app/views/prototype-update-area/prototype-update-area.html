@@ -13,10 +13,12 @@
             <!--image-->
             <md-input-container class="md-block" flex-gt-sm>
                 <label for="pictures">Загрузить файл</label>
-                <input id="pictures" label="Upload Images" name="pictures" ngf-select="upload($file)" ng-model="pictures" accept="image/*">
+                <input id="pictures" label="Upload Images" name="pictures" ng-file-change="$ctrl.upload($files)" ngf-select="$ctrl.upload($file)" ng-model="pictures" accept="image/*">
+                <!--<div id="uploadWidget" class="btn btn-default" ng-file-select ng-file-change="upload($files)">Select File</div>-->
             </md-input-container>
             <!--image-->
         </div>
+        {{pictures}}
         <img style="width:100%;" ngf-src="pictures">
         <!--<md-progress-linear md-mode="indeterminate"></md-progress-linear>-->
         <section layout="row" layout-sm="column" layout-align="end centre" layout-wrap>

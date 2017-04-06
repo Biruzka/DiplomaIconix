@@ -9,10 +9,40 @@ var usecases = require('./routes/usecases');
 var projects = require('./routes/projects');
 var prototypes = require('./routes/prototypes');
 var notes = require('./routes/notes');
+var users = require('./routes/users');
+var User = require('./models/User')
 
 var index = require('./routes/index');
 
 var app = express();
+
+var passport = require('passport');
+var jwt         = require('jwt-simple');
+var config      = require('./config/database');
+var apiRoutes = express.Router();
+
+
+apiRoutes.post('/signup', function(req, res) {
+  if (!req.body.email || !req.body.password || !req.body.login) {
+    res.json({success: false, msg: 'Please pass login, email and password.'});
+  } else {
+    var newUser = new User({
+      login: req.body.login,
+      email: req.body.email,
+      password: req.body.password
+    });
+    // save the user
+    newUser.save(function(err) {
+      if (err) {
+        return res.json({success: false, msg: 'User email already is used.'});
+      }
+      res.json({success: true, msg: 'Successful created new user.'});
+    });
+  }
+});
+
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -47,6 +77,9 @@ app.use('/usecases', usecases);
 app.use('/projects', projects);
 app.use('/prototypes', prototypes);
 app.use('/notes', notes);
+app.use('/users', users);
+
+app.use('/api', apiRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -109,8 +142,10 @@ mongoose.connect('mongodb://localhost/iconix-api')
 
 
 // Конфигурация Passport
-var passport = require('passport');
-var expressSession = require('express-session');
-app.use(expressSession({secret: 'mySecretKey'}));
+
+// var expressSession = require('express-session');
+// app.use(expressSession({secret: 'mySecretKey'}));
 app.use(passport.initialize());
-app.use(passport.session());
+require('./config/passport')(passport);
+// app.use(passport.session());
+

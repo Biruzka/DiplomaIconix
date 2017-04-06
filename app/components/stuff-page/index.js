@@ -18,6 +18,7 @@ module
       .state('userApp.stuffPage', {
         url: '/stuff',
         component: 'iconixStuffPage'
+
       })
   });
 

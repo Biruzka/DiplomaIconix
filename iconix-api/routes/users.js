@@ -11,10 +11,6 @@ router.get('/', function(req, res, next) {
         res.json(users);
     });
 });
-//
-// router.get('/test', function (req, res, next) {
-//   User.findByProjectId();
-// });
 
 /* POST /users */
 router.post('/', function(req, res, next) {
