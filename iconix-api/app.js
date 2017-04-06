@@ -29,7 +29,8 @@ apiRoutes.post('/signup', function(req, res) {
     var newUser = new User({
       login: req.body.login,
       email: req.body.email,
-      password: req.body.password
+      password: req.body.password,
+      projects: req.body.projects
     });
     // save the user
     newUser.save(function(err) {
@@ -41,7 +42,30 @@ apiRoutes.post('/signup', function(req, res) {
   }
 });
 
+// route to authenticate a user (POST http://localhost:8080/api/authenticate)
+apiRoutes.post('/authenticate', function(req, res) {
+  User.findOne({
+    email: req.body.email
+  }, function(err, user) {
+    if (err) throw err;
 
+    if (!user) {
+      res.send({success: false, msg: 'Authentication failed. User not found.'});
+    } else {
+      // check if password matches
+      user.comparePassword(req.body.password, function (err, isMatch) {
+        if (isMatch && !err) {
+          // if user is found and password is right create a token
+          var token = jwt.encode(user, config.secret);
+          // return the information including token as JSON
+          res.json({success: true, token: 'JWT ' + token, user: user});
+        } else {
+          res.send({success: false, msg: 'Authentication failed. Wrong password.'});
+        }
+      });
+    }
+  });
+});
 
 
 // view engine setup

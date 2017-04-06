@@ -29,10 +29,14 @@ router.get('/:id', function(req, res, next) {
         res.json(post);
     });
 });
-
+// 58e669cbbef1991f84673d20
+// projects - {projectName: "Team", access: "admin"}
 /* PUT /todos/:id */
-router.put('/:id', function(req, res, next) {
-    User.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
+router.put('/addProject/:id', function(req, res, next) {
+    var newProjectObject=eval("("+req.body.project+")");
+    console.log(newProjectObject);
+    User.findByIdAndUpdate(req.params.id, {$push: {projects: newProjectObject}},
+        {safe: true, upsert: true, new : true}, function (err, post) {
         if (err) return next(err);
         res.header('Access-Control-Allow-Origin', '*');
         res.json(post);
