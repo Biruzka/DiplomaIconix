@@ -1,7 +1,7 @@
 
 import AngularObject from 'helpers/angular-object';
 
-export default class StuffPageCtrl extends AngularObject {
+export default class ProjectChoosePageCtrl extends AngularObject {
     constructor ($mdDialog, currentSession) {
         'ngInject';
         super($mdDialog, currentSession);
