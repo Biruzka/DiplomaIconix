@@ -48,8 +48,10 @@ module
   .config(AppConfig)
   .service('currentSession', ['$http', 'Projects', '$cookies', function($http, Projects, $cookies){
       var that = this;
-      this.setCurrentProjectName = function(name) {
-          $cookies.put('projectName', name);
+
+      this.setCurrentProject = function(project) {
+          $cookies.put('projectName', project.name);
+          $cookies.put('projectAccess', project.access);
           that.setProject();
       };
 
@@ -69,6 +71,10 @@ module
 
       this.getCurrentProjectName = function() {
           return $cookies.get('projectName');
+      };
+
+      this.getCurrentProjectAccess = function() {
+          return $cookies.get('projectAccess');
       };
 
       this.getCurrentProject = function() {

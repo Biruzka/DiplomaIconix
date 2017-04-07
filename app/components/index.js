@@ -14,7 +14,8 @@ import RegistrationModule from './registration-page';
 import PrototypeCreateModule from './prototype-create-page';
 import PrototypeUpdateModule from './prototype-update-page';
 import UsecaseUpdatePageModule from './usecase-update-page';
-
+import ProjectChoosePageModule from './project-choose-page';
+import ProjectCreatePageModule from './project-create-page';
 const module = angular
   .module('app.components', [
     UserAppModule,
@@ -28,7 +29,9 @@ const module = angular
     RegistrationModule,
     PrototypeCreateModule,
     PrototypeUpdateModule,
-    UsecaseUpdatePageModule
+    UsecaseUpdatePageModule,
+    ProjectChoosePageModule,
+    ProjectCreatePageModule
   ]);
 
 export default module.name;

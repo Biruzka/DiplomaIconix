@@ -33,6 +33,9 @@ apiRoutes.post('/signup', function(req, res) {
       projects: req.body.projects
     });
     // save the user
+    res.header("Access-Control-Allow-Methods", '*');
+    res.header("Access-Control-Allow-Headers", '*');
+    res.header('Access-Control-Allow-Origin', '*');
     newUser.save(function(err) {
       if (err) {
         return res.json({success: false, msg: 'User email already is used.'});
@@ -58,6 +61,9 @@ apiRoutes.post('/authenticate', function(req, res) {
           // if user is found and password is right create a token
           var token = jwt.encode(user, config.secret);
           // return the information including token as JSON
+          res.header("Access-Control-Allow-Methods", '*');
+          res.header("Access-Control-Allow-Headers", '*');
+          res.header('Access-Control-Allow-Origin', '*');
           res.json({success: true, token: 'JWT ' + token, user: user});
         } else {
           res.send({success: false, msg: 'Authentication failed. Wrong password.'});
