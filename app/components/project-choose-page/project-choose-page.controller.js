@@ -6,11 +6,13 @@ export default class ProjectChoosePageCtrl extends AngularObject {
         'ngInject';
         super($mdDialog, currentSession);
 
-        this.user = {
-            email: '',
-            password: '',
-            projects: [{name:"Team", access:"admin"},{name:"Галерея", access:"user"}]
-        }
+        // this.user = {
+        //     email: '',
+        //     password: '',
+        //     projects: [{name:"Team", access:"admin"},{name:"Галерея", access:"user"}]
+        // }
+
+        this.user = currentSession.user;
 
         this.currentProject = '';
     }

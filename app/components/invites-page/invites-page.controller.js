@@ -2,14 +2,16 @@
 import AngularObject from 'helpers/angular-object';
 
 export default class InvitesPageCtrl extends AngularObject {
-  constructor ($mdDialog, $stateParams, Invites, currentSession) {
+  constructor ($mdDialog, $stateParams, Invites, currentSession, Users) {
     'ngInject';
-    super($mdDialog, $stateParams, Invites, currentSession);
+    super($mdDialog, $stateParams, Invites, currentSession, Users);
 
     this.invites = "hey";
     var that = this;
-      
-    this.personInvitedEmail = '';
+
+    this.invite = {};
+    this.newProject = {};
+    this.index = '';
     
 
     Invites
@@ -26,59 +28,89 @@ export default class InvitesPageCtrl extends AngularObject {
             );
   }
 
-  acceptInvite(index, projectName) {
-    const inviteDialog = this._buildInviteConfirmDialog(email);
-    this.personInvitedEmail = email;
+  acceptInvite(index, invite) {
+      console.log(invite);
+      this.index = index;
+      this.invite = invite;
+      this.newProject = {
+          name: invite.name_project,
+          access: "user"
+      };
+    const inviteDialog = this._buildInviteConfirmDialog(invite.name_project);
 
     this.$mdDialog
       .show(inviteDialog)
       .then((function(response){
         console.log("success 1");
-          var personInvited = {
-            name_project: this.currentSession.getCurrentProjectName(),
-            email_user:  this.personInvitedEmail
-          };
-        this.Stuff.addInvite(personInvited)
+        this.Users.addProject( this.newProject, this.currentSession.getUserId())
             .then((function(response){
-              console.log("success 2"+response.data, response.status);
+              console.log("success 2"+JSON.stringify(response.data), response.status);
+
+                this.Invites.deleteById(this.invite._id)
+                    .then((function(response){
+                        console.log("success deletedddd!!! "+response.data, response.status);
+                        this.invites.splice(this.index, 1);
+                    }).bind(this))
+                    .catch (function (error) {
+                            console.log("fail1111 ");
+                            console.log(error);
+                        }
+                    );
+
             }).bind(this))
             .catch (function (error) {
-                  console.log("fail! ");
+                  console.log("fail2 ");
                   console.log(error);
                 }
             );
 
         }).bind(this))
-      .catch(() => {console.log('error')});
+      .catch(() => {console.log('error2')});
   }
 
   removeInvite(index, invite) {
-    const removeDialog = this._buildRemoveConfirmDialog(person);
+    console.log(invite);
+    this.index = index;
+    this.invite = invite;
+    const removeDialog = this._buildRemoveConfirmDialog(invite.name_project);
 
     this.$mdDialog
       .show(removeDialog)
-      .then(() => {console.log('success')})
+        .then((function(response){
+            console.log("success 1");
+            this.Invites.deleteById( this.invite._id)
+                .then((function(response){
+                    console.log("success deleted"+JSON.stringify(response.data), response.status);
+                    this.invites.splice(this.index, 1);
+                }).bind(this))
+                .catch (function (error) {
+                        console.log("failure of delet ");
+                        console.log(error);
+                    }
+                );
+
+        }).bind(this))
       .catch(() => {console.log('error')});
   }
 
-  _buildInviteConfirmDialog(email) {
+  _buildInviteConfirmDialog(project) {
     return this.$mdDialog.confirm()
-          .title('Приглашение сотрудника')
-          .textContent(`Вы хотите пригласить нового сотрудника по почте: ${email}?`)
+          .title('Принятие приглашения')
+          .textContent(`Вы хотите принять проект: ${project}?`)
           .ariaLabel('invitePersonDialog')
-          .ok('ПРИГЛАСИТЬ')
+          .ok('ПРИНЯТЬ')
           .cancel('ОТМЕНА');
   }
 
-  _buildRemoveConfirmDialog(person) {
-    console.log(person);
+  _buildRemoveConfirmDialog(project) {
+    console.log(project);
     return this.$mdDialog.confirm()
-          .title('Удаление сотрудника')
+          .title('Отклонение приглашения')
           .ariaLabel('removePersonDialog')
-          .ok('УДАЛИТЬ')
+          .ok('ОТКЛОНИТЬ')
           .cancel('ОТМЕНА')
-          .textContent(`Вы действительно хотите удалить сотрудника 
-            ${person.lastName} ${person.firstName}?`);
+          .textContent(`Вы действительно хотите отказаться участвовать в проекте
+            ${project}?`);
   }
 
   _onInviteConfirmDialogSuccess() {

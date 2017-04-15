@@ -62,7 +62,8 @@ module
       };
 
       this.project = {
-          name: ""
+          name: "",
+          description: ""
       };
       this.access = "";
 
@@ -144,6 +145,12 @@ module
           }
           return '';
       };
+      this.getCurrentProjectDescription = function() {
+          if ($cookies.getObject('currentProject')!=undefined) {
+              return $cookies.getObject('currentProject').description;
+          }
+          return '';
+      };
 
       this.getCurrentProject = function() {
           return $cookies.getObject("currentProject");
@@ -172,6 +179,17 @@ module
         function getAsyncByName(name) {
             console.log("function");
             return $http.get('http://0.0.0.0:4000/projects/' + name, name);
+        }
+    }])
+    .factory('Users', ['$http', function($http){
+
+        return {
+            addProject: addProject,
+        };
+
+        function addProject(newProject, id_user) {
+            console.log("function");
+            return $http.put('http://0.0.0.0:4000/users/addProject/' + id_user, newProject);
         }
     }])
   .factory('Usecases', ['$http', function($http){
@@ -272,10 +290,19 @@ module
 
         return {
             getInvites: getAsync,
+            deleteById: deleteById
         };
 
         function getAsync(email) {
             return $http.get('http://0.0.0.0:4000/invites/'+email, {
+                params: {
+
+                }
+            });
+        }
+        function deleteById(id) {
+            console.log("удалякаем " + id);
+            return $http.delete('http://0.0.0.0:4000/invites/'+id, {
                 params: {
 
                 }

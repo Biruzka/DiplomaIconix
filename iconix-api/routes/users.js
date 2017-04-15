@@ -33,14 +33,44 @@ router.get('/:id', function(req, res, next) {
 // projects - {projectName: "Team", access: "admin"}
 /* PUT /todos/:id */
 router.put('/addProject/:id', function(req, res, next) {
-    var newProjectObject=eval("("+req.body.project+")");
-    console.log(newProjectObject);
-    User.findByIdAndUpdate(req.params.id, {$push: {projects: newProjectObject}},
-        {safe: true, upsert: true, new : true}, function (err, post) {
-        if (err) return next(err);
-        res.header('Access-Control-Allow-Origin', '*');
-        res.json(post);
+    // var newProjectObject=eval("("+req.body.project+")");
+
+    User.findById(req.params.id, function (err, post) {
+        console.log("post");
+
+        var existYet = false;
+
+        post.projects.forEach(function(item, i, arr) {
+
+
+          if (item.name == req.body.name) {
+              console.log("содержит");
+              existYet = true;
+          }
+            else {
+              console.log("не содержит");
+            }
+        });
+
+        if (existYet) res.json(post);
+
+        else {
+            User.findByIdAndUpdate(req.params.id, {$push: {projects: req.body}},
+                {safe: true, upsert: true, new : true}, function (err, post) {
+                    console.log("lобавочка")
+                if (err) return next(err);
+                res.header('Access-Control-Allow-Origin', '*');
+                res.json(post);
+            });
+        }
     });
+
+    // User.findByIdAndUpdate(req.params.id, {$push: {projects: req.body}},
+    //     {safe: true, upsert: true, new : true}, function (err, post) {
+    //     if (err) return next(err);
+    //     res.header('Access-Control-Allow-Origin', '*');
+    //     res.json(post);
+    // });
 });
 
 /* DELETE /todos/:id */

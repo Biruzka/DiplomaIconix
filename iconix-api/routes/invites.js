@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/:email_user', function(req, res, next) {
-    Invite.findOne({name: req.params['email_user']}, function (err, invites) {
+    Invite.find({email_user: req.params['email_user']}, function (err, invites) {
         if (err) return next(err);
         res.header('Access-Control-Allow-Origin', '*');
         res.json(invites);
