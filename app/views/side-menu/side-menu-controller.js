@@ -2,25 +2,36 @@
 import AngularObject from 'helpers/angular-object';
 
 export default class MenuCtrl extends AngularObject {
-    constructor ($stateParams) {
+    constructor ($stateParams, $scope, AuthService, API_ENDPOINT, $http, $state, currentSession, $cookies) {
         'ngInject';
-        super($stateParams);
+        super($stateParams, $scope, AuthService, API_ENDPOINT, $http, $state, currentSession, $cookies);
+
+        var that = this;
+
+        this.user = {
+            login:"",
+            email:""
+        };
+        this.project = {
+            name: ""
+        };
+
+        $scope.$watch(function() { return currentSession.user}, function(newValue) {
+                that.user.login = currentSession.getUserLogin();
+                that.user.email = currentSession.getUserEmail();
+        });
+
+        $scope.$watch(function() { return currentSession.project}, function(newValue) {
+            that.project.name = currentSession.getCurrentProjectName();
+        });
+
+    }
+
+    logout() {
+        this.AuthService.logout();
+        this.currentSession.logoutUser();
+        console.log("да, я удален");
+        console.log();
+        this.$state.go("userApp.loginPage");
     }
 };
-
-// .controller('InsideCtrl', function($scope, AuthService, API_ENDPOINT, $http, $state) {
-//     $scope.destroySession = function() {
-//         AuthService.logout();
-//     };
-//
-//     $scope.getInfo = function() {
-//         $http.get(API_ENDPOINT.url + '/memberinfo').then(function(result) {
-//             $scope.memberinfo = result.data.msg;
-//         });
-//     };
-//
-//     $scope.logout = function() {
-//         AuthService.logout();
-//         $state.go('outside.login');
-//     };
-// })

@@ -2,31 +2,31 @@
 import AngularObject from 'helpers/angular-object';
 
 export default class RegistrationPageCtrl extends AngularObject {
-    constructor ($mdDialog) {
+    constructor (AuthService, $state) {
         'ngInject';
-        super($mdDialog);
+        super(AuthService, $state);
+
+        this.user = {
+            login: '',
+            email: '',
+            password: ''
+        };
+
+        var that = this;
+    }
+
+    signUp(user) {
+        if (user.password == user.passwordRepeat) {
+            this.AuthService.register(user)
+                .then((function(response) {
+                    this.$state.go('userApp.loginPage');
+                    console.log("login success!  response: "+response);
+                }).bind(this))
+                .catch(function(err) {
+                        console.log("login failed "+  err);
+                    }
+                );
+        }
+
     }
 };
-
-
-// .controller('RegisterCtrl', function($scope, AuthService, $ionicPopup, $state) {
-//     $scope.user = {
-//         name: '',
-//         password: ''
-//     };
-//
-//     $scope.signup = function() {
-//         AuthService.register($scope.user).then(function(msg) {
-//             $state.go('outside.login');
-//             var alertPopup = $ionicPopup.alert({
-//                 title: 'Register success!',
-//                 template: msg
-//             });
-//         }, function(errMsg) {
-//             var alertPopup = $ionicPopup.alert({
-//                 title: 'Register failed!',
-//                 template: errMsg
-//             });
-//         });
-//     };
-// })

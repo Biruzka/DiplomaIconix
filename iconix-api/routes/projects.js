@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 var Project = require('../models/Project.js');
+var User = require('../models/User.js');
 
 /* GET /projects listing. */
 router.get('/', function(req, res, next) {
@@ -11,6 +12,16 @@ router.get('/', function(req, res, next) {
         res.json(projects);
     });
 });
+
+router.get('/stuff/:name', function(req, res, next) {
+    User.find({ projects : { $all : [{ "$elemMatch" : {name: req.params['name']}}]}}, function (err, users) {
+        if (err) return next(err);
+        res.header('Access-Control-Allow-Origin', '*');
+        console.log(users);
+        res.json(users);
+    });
+});
+// User.find({ projects : { $all : [{name: req.params['name'], access: "user"}, {name: req.params['name'], access: "admin"}] },
 
 router.get('/:name', function(req, res, next) {
     Project.findOne({name: req.params['name']}, function (err, projects) {

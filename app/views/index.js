@@ -15,6 +15,7 @@ import Enter from './enter';
 import PrototypeCreateForm from './prototype-create-form';
 import PrototypeUpdateArea from './prototype-update-area';
 import UsecaseUpdateForm from './usecase-update-form';
+import InvitesList from './invites-list';
 
 const module = angular
   .module('app.views', [
@@ -30,7 +31,8 @@ const module = angular
     Enter,
     PrototypeCreateForm,
     PrototypeUpdateArea,
-    UsecaseUpdateForm
+    UsecaseUpdateForm,
+      InvitesList
   ]);
 
 export default module.name;

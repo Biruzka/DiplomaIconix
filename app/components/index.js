@@ -16,6 +16,7 @@ import PrototypeUpdateModule from './prototype-update-page';
 import UsecaseUpdatePageModule from './usecase-update-page';
 import ProjectChoosePageModule from './project-choose-page';
 import ProjectCreatePageModule from './project-create-page';
+import InvitesPage from './invites-page';
 const module = angular
   .module('app.components', [
     UserAppModule,
@@ -31,7 +32,8 @@ const module = angular
     PrototypeUpdateModule,
     UsecaseUpdatePageModule,
     ProjectChoosePageModule,
-    ProjectCreatePageModule
+    ProjectCreatePageModule,
+    InvitesPage
   ]);
 
 export default module.name;

@@ -2,13 +2,13 @@
       <md-list-item class="md-3-line invited-stuff-list__person" ng-repeat="person in $ctrl.stuff">
         <div class="md-list-item-text invited-stuff-list__person-data">
           <span class="invited-stuff-list__person-name primary-text">
-            {{::person.lastName}} {{::person.firstName}}
+            {{::person.login}}
           </span>
           <span class="invited-stuff-list__person-email secondary-text">
             {{::person.email}}
           </span>
         </div>
-        <md-button class="md-icon-button invited-stuff-list__invite-button" 
+        <md-button class="md-icon-button invited-stuff-list__invite-button"
                    data-ng-click="$ctrl.removePerson({index: $index, person: person})">
           <i class="material-icons accent-text">close</i>
         </md-button>

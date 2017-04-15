@@ -2,31 +2,52 @@
 import AngularObject from 'helpers/angular-object';
 
 export default class StuffPageCtrl extends AngularObject {
-  constructor ($mdDialog, $stateParams) {
+  constructor ($mdDialog, $stateParams, Stuff, currentSession) {
     'ngInject';
-    super($mdDialog, $stateParams);
+    super($mdDialog, $stateParams, Stuff, currentSession);
 
-    this.stuff = [{
-      email: 'biruzka@gmail.com',
-      firstName: 'Файруза',
-      lastName: 'Идрисова'
-    }, {
-      email: 'ridel1e@gmail.com',
-      firstName: 'Руслан',
-      lastName: 'Салахов'
-    }, {
-      email: 'ravilgy@gmail.com',
-      firstName: 'Равиль',
-      lastName: 'Губайдуллин'
-    }]
+    this.stuff = "hey";
+    var that = this;
+    this.personInvitedEmail = '';
+    
+
+    Stuff
+        .getAsync(this.currentSession.getCurrentProjectName())
+        .then(function(response){
+              console.log("response " + response);
+              that.stuff = response.data;
+              console.log(response.data, response.status);
+            })
+            .catch (function(response) {
+                console.log("fail!");
+                console.log(response);
+              }
+            );
   }
 
   invitePerson(email) {
     const inviteDialog = this._buildInviteConfirmDialog(email);
+    this.personInvitedEmail = email;
 
     this.$mdDialog
       .show(inviteDialog)
-      .then(() => {console.log('success')})
+      .then((function(response){
+        console.log("success 1");
+          var personInvited = {
+            name_project: this.currentSession.getCurrentProjectName(),
+            email_user:  this.personInvitedEmail
+          };
+        this.Stuff.addInvite(personInvited)
+            .then((function(response){
+              console.log("success 2"+response.data, response.status);
+            }).bind(this))
+            .catch (function (error) {
+                  console.log("fail! ");
+                  console.log(error);
+                }
+            );
+
+        }).bind(this))
       .catch(() => {console.log('error')});
   }
 

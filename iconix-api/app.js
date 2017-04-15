@@ -10,7 +10,8 @@ var projects = require('./routes/projects');
 var prototypes = require('./routes/prototypes');
 var notes = require('./routes/notes');
 var users = require('./routes/users');
-var User = require('./models/User')
+var User = require('./models/User');
+var invites = require('./routes/invites');
 
 var index = require('./routes/index');
 
@@ -29,8 +30,7 @@ apiRoutes.post('/signup', function(req, res) {
     var newUser = new User({
       login: req.body.login,
       email: req.body.email,
-      password: req.body.password,
-      projects: req.body.projects
+      password: req.body.password
     });
     // save the user
     res.header("Access-Control-Allow-Methods", '*');
@@ -108,6 +108,7 @@ app.use('/projects', projects);
 app.use('/prototypes', prototypes);
 app.use('/notes', notes);
 app.use('/users', users);
+app.use('/invites', invites);
 
 app.use('/api', apiRoutes);
 

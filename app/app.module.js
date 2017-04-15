@@ -55,33 +55,36 @@ module
   .service('currentSession', ['$http', 'Projects', '$cookies', function($http, Projects, $cookies){
       var that = this;
 
+      this.user = {
+          name: "",
+          login: "",
+          email: ""
+      };
+
+      this.project = {
+          name: ""
+      };
+      this.access = "";
+
+      if ($cookies.getObject("user")!= undefined) {
+          this.user = $cookies.getObject("user");
+      }
+
+      if ($cookies.getObject("currentProject")!= undefined) {
+          this.project = $cookies.getObject("currentProject");
+      }
+
+      this.access = $cookies.getObject("access");
+
       this.setCurrentProject = function(project) {
-          $cookies.put('projectName', project.name);
-          $cookies.put('projectAccess', project.access);
-          that.setProject();
-      };
-
-      this.saveUser = function(user) {
-          $cookies.putObject('user', user);
-      };
-
-      this.getUserLogin = function(user) {
-          return $cookies.getObject("user").login;
-      };
-
-      this.getUserId = function(user) {
-          return $cookies.getObject("user")._id;
-      };
-
-      this.getUserEmail = function(user) {
-          return $cookies.getObject("user").email;
-      };
-
-      this.setProject = function() {
-          Projects.getAsyncByName($cookies.get('projectName'))
+          $cookies.put('access', project.access);
+          that.access = project.access;
+          Projects.getAsyncByName(project.name)
               .then((function(response){
                   console.log("success "+response.data, response.status);
                   $cookies.putObject('currentProject', response.data);
+                  this.project = response.data;
+                  console.log("current: "+this.project);
               }).bind(that))
 
               .catch (function (error) {
@@ -91,12 +94,59 @@ module
               );
       };
 
-      this.getCurrentProjectName = function() {
-          return $cookies.get('projectName');
+      this.saveUser = function(user) {
+          $cookies.putObject('user', user);
+          that.user = user;
       };
 
-      this.getCurrentProjectAccess = function() {
-          return $cookies.get('projectAccess');
+      this.logoutUser = function() {
+          $cookies.remove('user');
+          $cookies.remove('currentProject');
+          $cookies.remove('access');
+          that.user = {
+              name: "",
+              login: "",
+              email: ""
+          };
+          that.project = {
+              name: ""
+          };
+          that.access = "";
+      };
+
+      this.getUserLogin = function() {
+          console.log($cookies.getObject("user"));
+          if ($cookies.getObject("user")!=undefined){
+              return $cookies.getObject("user").login;
+          }
+          return undefined;
+      };
+
+      this.getUserId = function() {
+          console.log($cookies.getObject("user"));
+          if ($cookies.getObject("user")!=undefined){
+              return $cookies.getObject("user")._id;
+          }
+          return undefined;
+      };
+
+      this.getUserEmail = function() {
+          console.log($cookies.getObject("user"));
+          if ($cookies.getObject("user")!=undefined){
+              return $cookies.getObject("user").email;
+          }
+          return undefined;
+      };
+
+      this.getCurrentProjectName = function() {
+          if ($cookies.getObject('currentProject')!=undefined) {
+              return $cookies.getObject('currentProject').name;
+          }
+          return '';
+      };
+
+      this.getCurrentProject = function() {
+          return $cookies.getObject("currentProject");
       };
 
       this.getCurrentProject = function() {
@@ -166,6 +216,70 @@ module
         function update(usecaseId, usecase) {
           return $http.put('http://0.0.0.0:4000/usecases/'+usecaseId, usecase);
 
+        }
+    }])
+    .factory('Stuff', ['$http', function($http){
+
+        return {
+            getAsync: getAsync,
+            save: save,
+            getById: getById,
+            update: update,
+            delete: deleteById,
+            addInvite: addInvite
+        };
+
+        function getAsync(projectName) {
+            console.log("kkkk "+projectName);
+            return $http.get('http://0.0.0.0:4000/projects/stuff/'+projectName, {
+                params: {
+
+                }
+            });
+        }
+
+        function getById(id) {
+            return $http.get('http://0.0.0.0:4000/usecases/id/'+id, {
+                params: {
+
+                }
+            });
+        }
+
+        function deleteById(id) {
+            return $http.delete('http://0.0.0.0:4000/usecases/'+id, {
+                params: {
+
+                }
+            });
+        }
+
+        function save(usecase) {
+            return $http.post('http://0.0.0.0:4000/usecases', usecase);
+
+        }
+        function addInvite(invite) {
+            return $http.post('http://0.0.0.0:4000/invites', invite);
+
+        }
+
+        function update(usecaseId, usecase) {
+            return $http.put('http://0.0.0.0:4000/usecases/'+usecaseId, usecase);
+
+        }
+    }])
+    .factory('Invites', ['$http', function($http){
+
+        return {
+            getInvites: getAsync,
+        };
+
+        function getAsync(email) {
+            return $http.get('http://0.0.0.0:4000/invites/'+email, {
+                params: {
+
+                }
+            });
         }
     }])
     .factory('Prototypes', ['$http', function($http){
@@ -242,6 +356,8 @@ module
         };
 
         var register = function(user) {
+            console.log("register trying user: ");
+            console.log(user);
             return $q(function(resolve, reject) {
                 $http.post(API_ENDPOINT.url + '/signup', user).then(function(result) {
                     if (result.data.success) {
